@@ -65,3 +65,26 @@ These show the importance of moving from a descriptive epidemiology to more meas
   * Co risks with hypertension, diabetes etc
 * Not always a sudden onset and can come on gradually 
 * Since no VCID cure clicnical treatmetment and diagnosis early can help manage decline 
+
+# Paper
+## Duong MT, Nasrallah IM, Wolk DA, Chang CCY, Chang TY. Cholesterol, Atherosclerosis, and APOE in Vascular Contributions to Cognitive Impairment and Dementia (VCID): Potential Mechanisms and Therapy. Front Aging Neurosci. 2021 Mar 25;13:647990. doi: 10.3389/fnagi.2021.647990. PMID: 33841127; PMCID: PMC8026881. [Source](https://pmc.ncbi.nlm.nih.gov/articles/PMC8026881/#s2)
+* Apolipoprotein E (APOE) is a lipid-carrier protein tightly linked to dementia
+* APOE is associated with cholesterol and atherosclerosis, driving VCID
+* Specifically, the isoform APOE4 may contribute directly to VCID by contributing to atherosclerosis
+* This isoform of APOE may contribute to neuroinflammation leading to VCID.
+
+## Jin T, Yang H, Liu F, Lin S, Hu J, Wang J, Gou Y. Impact of APOE ε4 Genotype Load on Cognitive Function and Lipid Metabolism in Patients With Cerebral Small Vessel Disease. Ann Clin Transl Neurol. 2025 Oct 15. doi: 10.1002/acn3.70224. Epub ahead of print. PMID: 41089070. [Source](https://pubmed.ncbi.nlm.nih.gov/41089070/)
+* Similar to the paper above, this study investigates APOE4 as a dose-dependent contributor in lipid metabolism
+
+# Paper
+## Reagan, A.M., Christensen, K., Haber, A., Rozen, R., Carter, G.W., Sasner, M. and Howell, G. (2020), A common risk variant in the MTHFR gene contributes to age-related cerebrovascular dysfunction in VCID. Alzheimer's Dement., 16: e038657. https://doi.org/10.1002/alz.038657 [Source](https://alz-journals.onlinelibrary.wiley.com/doi/abs/10.1002/alz.038657)
+* MTHFR encodes methylenetetrahydrofolate reductase, an enzyme involved in production of folate, homocysteine, and methionine metabolism
+* C677T is a common risk factor for VCID, as demonstrated in this mouse model
+
+This paper by the same author follows up on this study:
+Reagan AM, Christensen KE, Graham LC, Bedwell AA, Eldridge K, Speedy R, Figueiredo LL, Persohn SC, Bottiglieri T, Nho K, Sasner M, Territo PR, Rozen R, Howell GR. The 677C > T variant in methylenetetrahydrofolate reductase causes morphological and functional cerebrovascular deficits in mice. J Cereb Blood Flow Metab. 2022 Dec;42(12):2333-2350. doi: 10.1177/0271678X221122644. Epub 2022 Sep 1. PMID: 36050860; PMCID: PMC9670012. [Source](https://pubmed.ncbi.nlm.nih.gov/36050860/)
+
+# Paper
+## Barabási, B., Barna, L., Santa-Maria, A.R. et al. Role of interleukin-6 and interleukin-10 in morphological and functional changes of the blood–brain barrier in hypertriglyceridemia. Fluids Barriers CNS 20, 15 (2023). https://doi.org/10.1186/s12987-023-00418-3 [Source](https://link.springer.com/article/10.1186/s12987-023-00418-3)
+* IL-6 may cause BBB impairment while the anti-inflammatory role of IL-10 may counteract that response.
+
