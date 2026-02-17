@@ -17,35 +17,35 @@ The features we currently plan to ingest and the number of people with data for 
 Table 1. Features to ingest
 | Concept ID | Name | Domain | Person Count |
 |-----------:|------|--------|-------------:|
-| 201254 | Type 1 diabetes mellitus | Condition Occurrence | 114,270 |
-| 201826 | Type 2 diabetes mellitus | Condition Occurrence | 1,193,762 |
-| 320128 | Essential hypertension | Condition Occurrence | 6,209,090 |
-| 372629 | Nonexudative (dry) age-related macular degeneration | Condition Occurrence | 331,894 |
-| 373503 | Transient cerebral ischemia | Condition Occurrence | 156,083 |
-| 376966 | Exudative (wet) age-related macular degeneration | Condition Occurrence | 89,310 |
-| 381290 | Ocular hypertension | Condition Occurrence | 153,729 |
-| 381591 | Cerebrovascular disease | Condition Occurrence | 75,465 |
-| 4045749 | Cerebral amyloid angiopathy | Condition Occurrence | 2,229 |
-| 4111710 | Brainstem stroke syndrome | Condition Occurrence | 1,844 |
-| 4111711 | Cerebellar stroke syndrome | Condition Occurrence | 3,864 |
-| 4182210 | Dementia | Condition Occurrence | 252,249 |
-| 4220669 | Ocular amyloid deposit | Condition Occurrence | 1,968 |
-| 4252356 | O/E - left eye proliferative diabetic retinopathy | Condition Occurrence | 895 |
-| 4255401 | O/E - right eye proliferative diabetic retinopathy | Condition Occurrence | 958 |
-| 432867 | Hyperlipidemia | Condition Occurrence | 4,008,058 |
-| 434337 | Retinal vascular disorder | Condition Occurrence | 28,324 |
-| 437541 | Glaucoma | Condition Occurrence | 109,931 |
-| 443432 | Impaired cognition | Condition Occurrence | 6,288 |
-| 45763583 | Nonproliferative diabetic retinopathy due to type 1 diabetes mellitus | Condition Occurrence | 2,069 |
 | 2212095 | Lipid panel (total cholesterol, HDL, triglycerides) | Measurement | 9,515,170 |
-| 2212218 | Apolipoprotein, each | Measurement | 56,803 |
 | 2212392 | Hemoglobin; glycosylated (A1C) | Measurement | 5,852,456 |
-| 2212449 | Lipoprotein, direct measurement; HDL cholesterol | Measurement | 123,296 |
 | 2212451 | Lipoprotein, direct measurement; LDL cholesterol | Measurement | 408,811 |
-| 2313657 | CPT 92235: Fluorescein angiography with interpretation and report | Procedure | 117,709 |
+| 2212449 | Lipoprotein, direct measurement; HDL cholesterol | Measurement | 123,296 |
+| 2212218 | Apolipoprotein, each | Measurement | 56,803 |
+| 320128 | Essential hypertension | Condition Occurrence | 6,209,090 |
+| 432867 | Hyperlipidemia | Condition Occurrence | 4,008,058 |
+| 201826 | Type 2 diabetes mellitus | Condition Occurrence | 1,193,762 |
+| 372629 | Nonexudative (dry) age-related macular degeneration | Condition Occurrence | 331,894 |
+| 4182210 | Dementia | Condition Occurrence | 252,249 |
+| 373503 | Transient cerebral ischemia | Condition Occurrence | 156,083 |
+| 381290 | Ocular hypertension | Condition Occurrence | 153,729 |
+| 201254 | Type 1 diabetes mellitus | Condition Occurrence | 114,270 |
+| 437541 | Glaucoma | Condition Occurrence | 109,931 |
+| 376966 | Exudative (wet) age-related macular degeneration | Condition Occurrence | 89,310 |
+| 381591 | Cerebrovascular disease | Condition Occurrence | 75,465 |
+| 434337 | Retinal vascular disorder | Condition Occurrence | 28,324 |
+| 443432 | Impaired cognition | Condition Occurrence | 6,288 |
+| 4111711 | Cerebellar stroke syndrome | Condition Occurrence | 3,864 |
+| 4045749 | Cerebral amyloid angiopathy | Condition Occurrence | 2,229 |
+| 45763583 | Nonproliferative diabetic retinopathy due to type 1 diabetes mellitus | Condition Occurrence | 2,069 |
+| 4220669 | Ocular amyloid deposit | Condition Occurrence | 1,968 |
+| 4111710 | Brainstem stroke syndrome | Condition Occurrence | 1,844 |
+| 4255401 | O/E - right eye proliferative diabetic retinopathy | Condition Occurrence | 958 |
+| 4252356 | O/E - left eye proliferative diabetic retinopathy | Condition Occurrence | 895 |
 | 2313659 | CPT 92250: Fundus photography with interpretation and report | Procedure | 1,083,733 |
-| 4143274 | History of cerebrovascular disease | Observation | 295,500 |
+| 2313657 | CPT 92235: Fluorescein angiography with interpretation and report | Procedure | 117,709 |
 | 4148407 | FH: Cardiovascular disease | Observation | 445,602 |
+| 4143274 | History of cerebrovascular disease | Observation | 295,500 |
 | 4195380 | Physical activity | Observation | 291 |
 
 # Phase 3
