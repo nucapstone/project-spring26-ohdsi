@@ -84,5 +84,20 @@ def get_measurement_sql():
     df = cursor.fetch_dataframe()
     return df
 
-df=get_measurement_sql()
+
+def get_observation_sql():
+    cursor = connection.cursor()
+
+    query = f'''
+    SELECT 
+        ob.person_id,
+        ob.observation_concept_id
+    FROM omop_cdm_53_pmtx_202203.observation ob 
+    WHERE ob.observation_concept_id IN (4195380, 4143274, 4148407);'''
+
+    cursor.execute(query)
+    df = cursor.fetch_dataframe()
+    return df
+
+df=get_observation_sql()
 print(df)
