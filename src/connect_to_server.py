@@ -99,5 +99,31 @@ def get_observation_sql():
     df = cursor.fetch_dataframe()
     return df
 
-df=get_observation_sql()
+def get_workable_sql():
+    cursor = connection.cursor()
+
+    query = f'''
+       SELECT
+    p.person_id,
+    p.gender_concept_id,
+    p.year_of_birth, 
+    co.condition_concept_id,
+    ob.observation_concept_id
+
+FROM omop_cdm_53_pmtx_202203.person p
+
+LEFT JOIN omop_cdm_53_pmtx_202203.condition_occurrence co 
+    ON co.person_id = p.person_id
+    AND co.condition_concept_id = 4252356
+
+LEFT JOIN omop_cdm_53_pmtx_202203.observation ob 
+    ON ob.person_id = p.person_id
+    AND ob.observation_concept_id = 4195380;
+        '''
+    cursor.execute(query)
+    df = cursor.fetch_dataframe()
+    return df
+
+df=get_workable_sql()
 print(df)
+print(df['condition_concept_id'].unique())
