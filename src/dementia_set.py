@@ -2,7 +2,7 @@ import redshift_connector
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src import credentials
+import credentials
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
