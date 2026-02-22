@@ -98,7 +98,7 @@ def do_some_stats():
             p_values.append(np.nan)
             odds_ratios.append(np.nan)
             continue
-        
+        #CANT USE CROSSTAB AS WE DOUBLEDIP
         table = [[a, b],
                  [c, d]]
         
