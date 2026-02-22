@@ -4,8 +4,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import credentials
 import pandas as pd
-import matplotlib.pyplot as plt
-#Used Vans as a template for now - where i got the sys info from)
+
 #set up connections. note: the CREDENTIALS.py file is NOT to be pushed 
 connection = redshift_connector.connect(
      host=credentials.HOST,
@@ -14,67 +13,61 @@ connection = redshift_connector.connect(
      user=credentials.USER,
      password=credentials.PASSWORD)
 
-def attempt1():
+def vcid():
     cursor = connection.cursor()
 
     query = f'''
             SELECT *
-            FROM {credentials.SCHEMAEP}.eda_vascular_dementia 
+            FROM {credentials.SCHEMAEP}.VCID 
         '''
     cursor.execute(query)
     df = cursor.fetch_dataframe()
-    df['Age']=2026-df['year_of_birth']
     return df
 
-
-
-def get_condition_sql():
+def control():
     cursor = connection.cursor()
 
     query = f'''
-         SELECT 
-            co.person_id,
-            condition_concept_id 
-        FROM omop_cdm_53_pmtx_202203.condition_occurrence co 
-        WHERE condition_concept_id  IN (
-            320128,
-            432867,
-            381290,
-            437541,
-            372629,
-            376966,
-            434337,
-            201826,
-            201254,
-            2212392,
-            373503,
-            381591,
-            37109056,
-            37018688,
-            443432,
-            4182210,
-            4111711,
-            4111710,
-            45763583,
-            4255401,
-            4252356
-                );
-        '''
+        SELECT *
+        FROM {credentials.SCHEMAEP}.control
+    '''
+
     cursor.execute(query)
     df = cursor.fetch_dataframe()
     return df
 
-df=attempt1()
+df=vcid()
 df['Age']=2026-df['year_of_birth']
 df['gender_concept_id'] = df['gender_concept_id'].replace({8507:'M',8532:'F'})
-print(df)
-
+# There is one individual with gender concept of 0
+df = df[df.gender_concept_id!=0]
+print(df['gender_concept_id'].value_counts())
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+print(df['person_id'].unique().shape)
 
 plt.figure()
 plt.title("Number of Patients with Dementia by Gender")
 plt.xlabel("Gender")
 plt.ylabel("Number of Patients with Dementia")
-sns.countplot(data=df, x='gender_concept_id')
+sns.countplot(data=df[df['gender_concept_id']!=0].drop_duplicates(subset='person_id'), x='gender_concept_id')
 plt.show()
+
+plt.figure()
+plt.title("Number of Patients with Dementia by Age")
+plt.xlabel("Age")
+plt.ylabel("Number of Patients with Dementia by Age")
+sns.histplot(data=df.drop_duplicates(subset='person_id'), x='Age', binwidth=5)
+plt.show()
+
+plt.figure()
+plt.title("Distribution of Patients with Dementia by Age and Sex")
+plt.xlabel("Age")
+plt.ylabel("Number of Patients with Dementia")
+# sns.histplot(data=df, x='Age', binwidth=5, hue='gender_concept_id')
+sns.kdeplot(data=df.drop_duplicates(subset='person_id'), x='Age', hue='gender_concept_id')
+plt.show()
+
+control_df = control()
+print(control_df.head())
