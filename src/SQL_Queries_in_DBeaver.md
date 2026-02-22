@@ -1,4 +1,24 @@
-# ERIN QUERIES 
+# Getting VCID
+```
+CREATE TABLE SCHEMA.VCID AS SELECT 
+    p.person_id,
+    p.year_of_birth,
+    p.gender_concept_id,
+    p.location_id,
+    co.condition_concept_id,
+    co.condition_start_date
+FROM omop_cdm_53_pmtx_202203.person p
+INNER JOIN (
+    SELECT person_id, 
+           condition_concept_id,
+           MIN(condition_start_date) as condition_start_date
+    FROM omop_cdm_53_pmtx_202203.condition_occurrence
+    WHERE condition_concept_id IN (443432, 4182210)
+    GROUP BY person_id, condition_concept_id
+) co ON p.person_id = co.person_id
+INNER JOIN omop_cdm_53_pmtx_202203.concept c 
+    ON co.condition_concept_id = c.concept_id;
+```
 
 ## Get 10 k Samples that are similar to main
 ```CREATE TABLE schema.vcid_sample_10k AS
@@ -86,8 +106,8 @@ WHERE rn <= CEIL(10000.0 * total_in_group / t.total);
 CREATE TABLE SCHEMA.pop_conditions_10k AS
 SELECT v.*, 
        c.condition_concept_id AS condition_concept_id_occurrence
-FROM omop_cdm_53_pmtx_202203.condition_occurrence c
-JOIN SCHEMA.no_dementia_sample_10k v
+FROM SCHEMA.no_dementia_sample_10k v
+LEFT JOIN omop_cdm_53_pmtx_202203.condition_occurrence c
   ON c.person_id = v.person_id;
   ````
 ```
