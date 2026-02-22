@@ -18,13 +18,23 @@ def attempt1():
 
     query = f'''
             SELECT *
-            FROM {credentials.SCHEMAEP}.eda 
-        
+            FROM {credentials.SCHEMAEP}.eda_vascular_dementia 
         '''
     cursor.execute(query)
     df = cursor.fetch_dataframe()
     return df
 
 df=attempt1()
-print(df.head)
- 
+df['Age']=2026-df['year_of_birth']
+df['gender_concept_id'] = df['gender_concept_id'].replace({8507:'M',8532:'F'})
+print(df)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure()
+plt.title("Number of Patients with Dementia by Gender")
+plt.xlabel("Gender")
+plt.ylabel("Number of Patients with Dementia")
+sns.countplot(data=df, x='gender_concept_id')
+plt.show()
