@@ -125,7 +125,7 @@ WHERE
               (SELECT concept_id FROM dementia_concepts)
     );
 
--- CHECKPOINT: SELECT COUNT(*) FROM cases_raw; -- expect ~155k
+-- SELECT COUNT(*) FROM cases_raw; -- expect ~155k
 
 CREATE TABLE cases_stratified AS
 SELECT
@@ -164,7 +164,7 @@ FROM (
 -- Change back to 167 for 1,000 cohort or 1667 for 10,000 scaling test
 WHERE stratum_row_num <= 9999;
 
--- CHECKPOINT: SELECT age_stratum, sex, COUNT(*)
+--             SELECT age_stratum, sex, COUNT(*)
 --             FROM cases_sample GROUP BY age_stratum, sex ORDER BY 1,2;
 
 
@@ -215,7 +215,7 @@ WHERE
                   DATEADD(month, -12, op.observation_period_end_date))
     );
 
--- CHECKPOINT: SELECT COUNT(DISTINCT person_id) FROM control_pool;
+-- SELECT COUNT(DISTINCT person_id) FROM control_pool;
 
 
 /***********************************************************************
@@ -252,7 +252,7 @@ WHERE match_rank = 1;
 CREATE TABLE controls_sample AS
 SELECT * FROM controls_matched;
 
--- CHECKPOINT: SELECT 'cases', COUNT(*) FROM cases_sample
+--             SELECT 'cases', COUNT(*) FROM cases_sample
 --             UNION ALL
 --             SELECT 'controls', COUNT(*) FROM controls_sample;
 
@@ -276,7 +276,7 @@ SELECT
     NULL AS outcome_date
 FROM controls_sample;
 
--- CHECKPOINT: SELECT outcome_dementia, COUNT(*)
+--             SELECT outcome_dementia, COUNT(*)
 --             FROM master_cohort GROUP BY outcome_dementia;
 
 
