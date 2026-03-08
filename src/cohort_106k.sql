@@ -159,9 +159,8 @@ FROM (
         ) AS stratum_row_num
     FROM cases_stratified
 ) t
--- Full dataset: 9999 per cell captures all available cases per stratum
--- (max stratum is 70+F with ~71,729 — 9999 safely captures all)
--- Change back to 167 for 1,000 cohort or 1667 for 10,000 scaling test
+-- Capping cases at 9999 per stratum to limit size of dataset
+-- (max stratum is 70+F with ~71,729)
 WHERE stratum_row_num <= 9999;
 
 --             SELECT age_stratum, sex, COUNT(*)
