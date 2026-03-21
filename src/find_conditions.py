@@ -8,6 +8,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy.stats import chi2_contingency
 import numpy as np
+from statsmodels.stats.multitest import multipletests
+
 
 #set up connections. note: the CREDENTIALS.py file is NOT to be pushed 
 connection = redshift_connector.connect(
@@ -42,7 +44,7 @@ def do_some_stats():
     df_people = df[['person_id', 'outcome_dementia']].drop_duplicates() #add this to merge back in otherwise I was getting insane duplicates
 
     for condition in conditions:
-        df_cond = df[df['condition_concept_id'] == 432867][['person_id']].drop_duplicates()
+        df_cond = df[df['condition_concept_id'] == condition][['person_id']].drop_duplicates()
         df_cond['has_condition'] = 1
 
         df_merged = df_people.merge(df_cond, on='person_id', how='left')
@@ -57,9 +59,17 @@ def do_some_stats():
             ,'p_value':p
             })
     condition_search=pd.DataFrame(stats_info)
+    condition_search['p_adj'] = multipletests(condition_search['p_value'], method='fdr_bh')[1]
+
     return condition_search.sort_values('p_value')
 
 df=do_some_stats()
 df.to_csv('conditions.csv')
 df_significant=df[df['p_value']<.05]
+df_significant_adj=df[df['p_adj']<.05]
 df_significant.to_csv('significant_conditions.csv')
+df_significant_adj.to_csv('sig_adjust.csv')
+print(df.shape)
+
+print(df_significant.shape)
+print(df_significant_adj.shape)
