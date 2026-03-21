@@ -116,4 +116,4 @@ def do_some_stats():
 
 
 df=do_some_stats()
-print(df.head)
+print(df)
