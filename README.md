@@ -129,3 +129,6 @@ Sampling the entire OHDSI database, we are able to ensure that cohorts are repro
 
 - [External Validation of the eRADAR Risk Score for Detecting Undiagnosed Dementia in Two Real-World Healthcare Systems
 ](https://pubmed.ncbi.nlm.nih.gov/35906516/)
+
+- [Early prediction of Alzheimer’s disease and related dementias using real-world electronic health records
+](https://pmc.ncbi.nlm.nih.gov/articles/PMC10976442/)
