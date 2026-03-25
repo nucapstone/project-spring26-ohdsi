@@ -72,7 +72,14 @@ All eligible patients meeting inclusion criteria are included initially. Sex and
 *Note: 90+ age stratum excluded from controls as no cases are present in this stratum.*
 
 ### Feature Set
-All features extracted from the lookback window ([T0 − 12 months, T0]) only.
+All features extracted from the lookback window ([T0 − 12 months, T0]) only. For further research within OHDSI, concept ideas could be added/removed from [cohort.sql](cohort.sql) to adjust the features in the model. 
+
+This can be done by adding the following in the ```CREATE TABLE cohort_features``` call. Similarly, irrelevant features could be removed by deleting such clauses, although that could be done with Python as well.
+
+```
+MAX(CASE WHEN co.condition_concept_id = chosen_concept_id_here  THEN 1 ELSE 0 END)
+        AS chosen_concept_name_here,
+```
 
 #### Demographics
 |Feature|Type|
@@ -111,3 +118,14 @@ All features extracted from the lookback window ([T0 − 12 months, T0]) only.
 Many of the biomarkers we were intially planning to investigate do not have measurements. This makes the data less informative as it masks certain measurements (ex: rather than cholesterol measurements, we have indications that people do or do not have hypercholesterolemia).
 #### Dementia prevalence and cohort matching
 Sampling the entire OHDSI database, we are able to ensure that cohorts are reproducible between machines. If any subsampling is performed in the future, it is critical to document the seed or random state for reproducibility.
+
+## References
+- [The Book of OHDSI](https://ohdsi.github.io/TheBookOfOhdsi/)
+
+- [OMOP CDM v5.4 Schema & Table Details](https://ohdsi.github.io/CommonDataModel/cdm54.html)
+
+- [Risk score for the prediction of dementia risk in 20 years among middle aged people: a longitudinal, population-based study
+](https://pubmed.ncbi.nlm.nih.gov/16914401/)
+
+- [External Validation of the eRADAR Risk Score for Detecting Undiagnosed Dementia in Two Real-World Healthcare Systems
+](https://pubmed.ncbi.nlm.nih.gov/35906516/)
