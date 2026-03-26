@@ -16,6 +16,34 @@ Christine Lary, PhD, Research Associate Professor, Roux Institute, Northeastern 
 ### Building a Cohort in NEU's OHDSI Lab
 Within IQVIA's PharMetrics Plus data, we have access to billable claims data, which limits us to diagnoses in the scope of this study.
 
+**To replicate this cohort:**
+
+Create a src folder with a credentials.py file:
+
+```
+'''
+Northeastern will provide the user with:
+- Host/Instance
+- Port
+- Database
+- Amazon Redshift Username: from your OHDSI Lab workspace login details email
+- Amazon Redshift Password: from your - OHDSI Lab workspace login details email (you have the option to save your password locally to avoid retyping each time)
+- Amazon Redshift Schema: this will be provided as a value formatted like work_lastname_firstnameNumber
+'''
+#DO NOT PUSH THIS TO GITHUB!!!!! 
+HOST = "copy_host_value"
+
+PORT = redshift_port
+
+DATABASE = "database name"
+
+USER = "your_username"
+
+PASSWORD = "your_password"
+
+SCHEMAEP = "your_schema"
+```
+
 ### Study Design
 | Field | Detail | 
 |-------|--------|
