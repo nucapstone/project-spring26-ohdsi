@@ -25,7 +25,7 @@ def get_data():
     may have had before t0. It also culls any condiitions that have less than 10 instances'''
     query = f'''
             SELECT *
-            FROM {credentials.SCHEMA}.cohort_conditions 
+            FROM {credentials.SCHEMA}.conditions_before_t0
         '''
     cursor.execute(query)
     df = cursor.fetch_dataframe()
