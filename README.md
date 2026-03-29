@@ -41,7 +41,7 @@ USER = "your_username"
 
 PASSWORD = "your_password"
 
-SCHEMAEP = "your_schema"
+SCHEMA = "your_schema"
 ```
 
 ### Study Design
