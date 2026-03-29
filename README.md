@@ -143,9 +143,14 @@ MAX(CASE WHEN co.condition_concept_id = chosen_concept_id_here  THEN 1 ELSE 0 EN
 
 ### Known Limitations
 #### Claims-based diagnosis coding
-Many of the biomarkers we were intially planning to investigate do not have measurements. This makes the data less informative as it masks certain measurements (ex: rather than cholesterol measurements, we have indications that people do or do not have hypercholesterolemia).
+Many of the biomarkers we were initially planning to investigate do not have measurements. This makes the data less informative as it masks certain measurements (ex: rather than cholesterol measurements, we have indications that people do or do not have hypercholesterolemia).
 #### Dementia prevalence and cohort matching
 Sampling the entire OHDSI database, we are able to ensure that cohorts are reproducible between machines. If any subsampling is performed in the future, it is critical to document the seed or random state for reproducibility.
+
+### To-Do
+- Run summary statistics on the cohort (distributions of age and sex across cases and controls).
+- Clean up the repo (delete files that were works in progress but are no longer necessary).
+- Comparison of current classification models listed in references and possibly a baseline that can be used as a starting reference point for further modeling.
 
 ## References
 - [The Book of OHDSI](https://ohdsi.github.io/TheBookOfOhdsi/)
