@@ -99,7 +99,7 @@ The current cohort design ingests data from all eligible participants in the OHD
 
 **Outcome window:** 3 years after T0. Incident dementia diagnosis assessed within those 3 years.
 
-### Inclusion Criteria
+#### Inclusion Criteria
 |Criterion|Detail|
 |---------|------|
 |Age at T0 ≥ 60|Calculated as calendar year of T0 minus birth year|
@@ -108,7 +108,7 @@ The current cohort design ingests data from all eligible participants in the OHD
 |3 years observation after T0|Any observation period extending to T0 + 3 years|
 |No dementia before T0|No dementia or impaired cognition code at or before T0 (incident dementia only)|
 
-### Outcome Definition
+#### Outcome Definition
 |Outcome|Definition|
 |-------|----------|
 |Incident dementia (1)|First dementia diagnosis occurring within [T0, T0 + 3 years]|
@@ -119,14 +119,14 @@ Dementia was defined using CONCEPT_ANCESTOR values from two top-level concepts:
 - [4182210 — Dementia](dementia_diagnoses.md)
 - [443432 — Impaired cognition](ic_diagnoses.md) (included to capture ADRD-related diagnoses and prevent outcome leakage)
 
-### Cohort Size and Incidence
+#### Cohort Size and Incidence
 All eligible patients meeting inclusion criteria are included initially. Sex and age are retained as model features rather than matching variables.
 
 **Observed incidence:** 90,682 cases out of 1,214,708 eligible patients (~7.5%).
 
 **Incidence > 5%:** Controls are not downsampled using stratified random sampling to match the age and sex distribution of cases. [cohort.sql](cohort.sql) specifies how to do this and would yield a balanced cohort of 181,364 total individuals.
 
-### Control Sampling Targets (matched to case distribution)
+#### Control Sampling Targets (matched to case distribution)
 |Sex|Age Stratum|Cases|Controls Sampled|
 |---|-----------|-----|----------------|
 |F|60-69|7,929|7,929|
@@ -139,7 +139,7 @@ All eligible patients meeting inclusion criteria are included initially. Sex and
 
 *Note: 90+ age stratum excluded from controls as no cases are present in this stratum.*
 
-### Feature Set
+#### Feature Set
 All features extracted from the lookback window ([T0 − 12 months, T0]) only. For further research within OHDSI, concept ideas could be added/removed from [cohort.sql](cohort.sql) to adjust the features in the model. 
 
 This can be done by adding the following in the ```CREATE TABLE cohort_features``` call. Similarly, irrelevant features could be removed by deleting such clauses, although that could be done with Python as well.
@@ -192,7 +192,7 @@ Sampling the entire OHDSI database, we are able to ensure that cohorts are repro
 - Clean up the repo (delete files that were works in progress but are no longer necessary).
 - Comparison of current classification models listed in references and possibly a baseline that can be used as a starting reference point for further modeling.
 
-## References
+### References
 - [The Book of OHDSI](https://ohdsi.github.io/TheBookOfOhdsi/)
 
 - [OMOP CDM v5.4 Schema & Table Details](https://ohdsi.github.io/CommonDataModel/cdm54.html)
