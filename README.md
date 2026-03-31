@@ -16,10 +16,20 @@ Christine Lary, PhD, Research Associate Professor, Roux Institute, Northeastern 
 ### Building a Cohort in NEU's OHDSI Lab
 Within IQVIA's PharMetrics Plus data, we have access to billable claims data, which limits us to diagnoses in the scope of this study.
 
-**To replicate this cohort:**
+**To replicate the epidemiological cohort for dementia described below:**
 
-Create a src folder with a credentials.py file:
+- Copy and run the [cohort.sql](src/cohort.sql) file in DBeaver. This will generate the exact same cohort (we ingest data for all eligible participants) we use in under 10 minutes.
 
+**To access this cohort in your WorkSpaces account:**
+
+- Create a src folder with the following:
+  - A credentials.py file
+    - The example below demonstrates how to reference your credentials when connecting to DBeaver.
+    - Ensure this is included in a .gitignore file. Do not push your credentials to GitHub!
+  - A [cohort_conn.py](src/cohort_conn.py)
+    - Import your dataframe with the example connection below.
+
+`credentials.py`
 ```
 '''
 Northeastern will provide the user with:
@@ -44,7 +54,27 @@ PASSWORD = "your_password"
 SCHEMA = "your_schema"
 ```
 
+`cohort_conn.py`
+```
+import redshift_connector
+import credentials # This imports your credentials file
+
+connection = redshift_connector.connect(
+     host=credentials.HOST,
+     port=credentials.PORT,
+     database=credentials.DATABASE,
+     user=credentials.USER,
+     password=credentials.PASSWORD)
+
+cursor = connection.cursor()
+cursor.execute(f'''SELECT * FROM {credentials.SCHEMA}.cohort_features''')
+df = pd.DataFrame(cursor.fetchall(), columns=[d[0] for d in cursor.description])
+```
+
 ### Study Design
+
+The current cohort design ingests data from all eligible participants in the OHDSI database. The eligibility window, target features, and predictive diagnoses of interest can all be adjusted such that this cohort design could be reproduced for any epidemiological cohort study.
+
 | Field | Detail | 
 |-------|--------|
 |Type | Population-based cohort study|
