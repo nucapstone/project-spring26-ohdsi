@@ -23,6 +23,10 @@ Given the nature of billable claims data in the OHDSI dataset and our progress s
 5. **Preliminary modeling** to indicate baseline performance for future teams that carry this research forward.
 6. **A reproducible framework** that can be used for similar epidemiological studies in the OHDSI database. This will allow research teams to hit the ground running faster, build a cohort, and jump straight to EDA and modeling.
 
+### Accessing OHDSI
+
+The OHDSI Lab admin has very thorough documentation, and we've created this [Quickstart Guide](ohdsi_setup.md)
+
 ### Building a Cohort in NEU's OHDSI Lab
 Within IQVIA's PharMetrics Plus data, we have access to billable claims data, which limits us to diagnoses in the scope of this study.
 
@@ -180,6 +184,26 @@ MAX(CASE WHEN co.condition_concept_id = chosen_concept_id_here  THEN 1 ELSE 0 EN
 |Glaucoma|437541|Binary|
 |Retinal vascular disorder|434337|Binary|
 |Diabetic retinopathy|45763583, 4255401, 4252356|Binary|
+
+### Preliminary Findings 
+#### Methodology
+Using the epidimilogical cohort you are able to use [get_conditions.sql](src/get_conditions.sql) to link your people_id to any unique condition a patient would have exhibited before T0.  From this table you are able to run chi square testing to find diagnoises that occured more significnatly in patients with the targeted contidition ID (Dementia for this cohort).  Using [find_condition.py](src/find_conditions.py) This will loop through all conditions and run a chi-square test on them, outputting conditions.csv, significant_condtions.csv, which has the conditions where the p value is <.05 and sig_adjust.csv which has the adjusted p value taking into account the amount of variables there are. This takes a bit of time to run as there are over 10,000 conditions. 
+
+#### Findings
+
+Feature|Concept ID|Adjusted p value|
+|-------|----------|----|
+|Chronic diastolic heart failure|40479576|3.36e-284|
+|Tear film insufficiency|378427|4.89e-234|
+|Primary open angle glaucoma|435262|2.87e-223|
+|Carotid artery obstruction|4288310|3.41e-207|
+|Bradycardia|4169095|2.97e-182|
+
+**While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder **
+
+
+
+
 
 ### Known Limitations
 #### Claims-based diagnosis coding
