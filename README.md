@@ -193,12 +193,12 @@ Using the epidimilogical cohort you are able to use [get_conditions.sql](src/get
 
 Feature|Concept ID|Adjusted p value|
 |-------|----------|----|
-|Chronic diastolic heart failure|40479576|3.36e-284|
-|Tear film insufficiency|378427|4.89e-234|
+|Chronic Diastolic heart failure|40479576|3.36e-284|
+|Tear film Insufficiency|378427|4.89e-234|
 |Primary open angle glaucoma|435262|2.87e-223|
 |Carotid artery obstruction|4288310|3.41e-207|
 |Bradycardia|4169095|2.97e-182|
-
+|Peripheral Venous Insufficiency|321596|1.32e-170|
 We can see the discrepcies in these conditions in the cross tab tables
 
 ```
@@ -248,6 +248,15 @@ outcome_dementia        0      1      All
 has_condition
 0.0               1098739  87265  1186004
 1.0                 25287   3417    28704
+All               1124026  90682  1214708
+```
+
+```Peripheral Venous Insufficiency
+
+outcome_dementia        0      1      All
+has_condition
+0.0               1105121  87998  1193119
+1.0                 18905   2684    21589
 All               1124026  90682  1214708
 ```
 **While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder **
