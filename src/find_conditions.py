@@ -62,6 +62,21 @@ def do_some_stats():
     condition_search['p_adj'] = multipletests(condition_search['p_value'], method='fdr_bh')[1]
 
     return condition_search.sort_values('p_value')
+def get_crosstab(condition_id, condition_name):
+    df=get_data()
+    df_people = df[['person_id', 'outcome_dementia']].drop_duplicates()
+
+    df_cond = df[df['condition_concept_id'] == condition_id][['person_id']].drop_duplicates()
+    df_cond['has_condition'] = 1
+
+    df_merged = df_people.merge(df_cond, on='person_id', how='left')
+
+    df_merged['has_condition'] = df_merged['has_condition'].fillna(0)
+
+    table = pd.crosstab(df_merged['has_condition'], df_merged['outcome_dementia'], margins=True)
+
+    print(f'\n {condition_name} \n')
+    print(table)
 
 df=do_some_stats()
 df.to_csv('conditions.csv')

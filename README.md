@@ -199,6 +199,57 @@ Feature|Concept ID|Adjusted p value|
 |Carotid artery obstruction|4288310|3.41e-207|
 |Bradycardia|4169095|2.97e-182|
 
+We can see the discrepcies in these conditions in the cross tab tables
+
+```
+Condition: Chronic diastolic heart failure
+
+outcome_dementia        0      1      All
+has_condition
+0.0               1110514  88305  1198819
+1.0                 13512   2377    15889
+All               1124026  90682  1214708
+```
+
+```
+ Tear Film Insufficiency
+
+outcome_dementia        0      1      All
+has_condition
+0.0               1028285  80054  1108339
+1.0                 95741  10628   106369
+All               1124026  90682  1214708
+```
+
+```
+
+ Primary Open Angle Glaucoma
+
+outcome_dementia        0      1      All
+has_condition
+0.0               1068285  83969  1152254
+1.0                 55741   6713    62454
+```
+
+```
+Carotid Artery Obstruction
+
+outcome_dementia        0      1      All
+has_condition
+0.0               1097959  87087  1185046
+1.0                 26067   3595    29662
+All               1124026  90682  1214708
+``` 
+
+```
+Bradycardia
+
+outcome_dementia        0      1      All
+has_condition
+0.0               1098739  87265  1186004
+1.0                 25287   3417    28704
+All               1124026  90682  1214708
+```
 **While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder **
 
 
