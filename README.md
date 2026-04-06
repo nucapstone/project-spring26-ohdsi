@@ -199,6 +199,7 @@ Feature|Concept ID|Adjusted p value|
 |Carotid artery obstruction|4288310|3.41e-207|
 |Bradycardia|4169095|2.97e-182|
 |Peripheral Venous Insufficiency|321596|1.32e-170|
+
 We can see the discrepcies in these conditions in the cross tab tables
 
 ```
@@ -250,7 +251,8 @@ has_condition
 All               1124026  90682  1214708
 ```
 
-```Peripheral Venous Insufficiency
+```
+Peripheral Venous Insufficiency
 
 outcome_dementia        0      1      All
 has_condition
@@ -258,7 +260,7 @@ has_condition
 1.0                 18905   2684    21589
 All               1124026  90682  1214708
 ```
-**While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder **
+
 **While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder**
 
 
