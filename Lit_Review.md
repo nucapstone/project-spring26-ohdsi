@@ -1,3 +1,7 @@
+```
+This literature review has not been finalized as we ended up going in a different direction with this project. Many of the features our stakeholder was interested in, and we review below, are not available in OHDSI.
+```
+
 # Stakeholder
 Christine Lary, PhD, Research Associate Professor, Roux Institute, Northeastern University, c.lary@northeastern.edu
 # Description
