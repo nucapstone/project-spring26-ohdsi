@@ -202,7 +202,7 @@ Feature|Concept ID|Adjusted p value|
 We can see the discrepcies in these conditions in the cross tab tables
 
 ```
-Condition: Chronic diastolic heart failure
+Chronic diastolic heart failure
 
 outcome_dementia        0      1      All
 has_condition
@@ -212,7 +212,7 @@ All               1124026  90682  1214708
 ```
 
 ```
- Tear Film Insufficiency
+Tear Film Insufficiency
 
 outcome_dementia        0      1      All
 has_condition
@@ -222,8 +222,7 @@ All               1124026  90682  1214708
 ```
 
 ```
-
- Primary Open Angle Glaucoma
+Primary Open Angle Glaucoma
 
 outcome_dementia        0      1      All
 has_condition
