@@ -25,7 +25,7 @@ Given the nature of billable claims data in the OHDSI dataset and our progress s
 
 ### Accessing OHDSI
 
-The OHDSI Lab admin has very thorough documentation, and we've created this [Quickstart Guide](ohdsi_setup.md)
+The OHDSI Lab admin has very thorough documentation, and we've created this [Quickstart Guide](ohdsi_setup.md).
 
 ### Building a Cohort in NEU's OHDSI Lab
 Within IQVIA's PharMetrics Plus data, we have access to billable claims data, which limits us to diagnoses in the scope of this study.
@@ -250,7 +250,7 @@ has_condition
 1.0                 25287   3417    28704
 All               1124026  90682  1214708
 ```
-**While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder **
+**While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder**
 
 
 
