@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, roc_auc_score, roc_curve, RocCurveDisplay, PrecisionRecallDisplay, average_precision_score
 
 connection = redshift_connector.connect(
      host=credentials.HOST,
@@ -18,32 +18,20 @@ connection = redshift_connector.connect(
      password=credentials.PASSWORD)
 
 cursor = connection.cursor()
-cursor.execute(f'''SELECT * FROM {credentials.SCHEMAEP}.cohort_features''')
+cursor.execute(f'''SELECT * FROM {credentials.SCHEMA}.cohort_features''')
 df = pd.DataFrame(cursor.fetchall(), columns=[d[0] for d in cursor.description])
 
-print(df.shape)
-print(df['outcome_dementia'].value_counts())
-print(df.groupby('outcome_dementia')[['age_at_t0', 'has_hypertension', 'has_hyperlipidemia',
-                                      'has_t2dm','has_t1dm','has_tia',
-                                      'has_cerebrovascular_disease','has_cerebellar_stroke','has_brainstem_stroke',
-                                      'has_cerebral_amyloid_angiopathy','has_amd','has_ocular_hypertension',
-                                      'has_glaucoma','has_retinal_vascular_disorder','has_diabetic_retinopathy']].mean() * 100)
+# print(df.shape)
+# print(df['outcome_dementia'].value_counts())
+# print(df.groupby('outcome_dementia')[['age_at_t0', 'hypertension', 'hyperlipidemia',
+#                                       't2dm','t1dm','tia',
+#                                       'cerebrovascular_disease','cerebellar_stroke','brainstem_stroke',
+#                                       'cerebral_amyloid_angiopathy','amd','ocular_hypertension',
+#                                       'glaucoma','retinal_vascular_disorder','diabetic_retinopathy']].mean() * 100)
 
-print(f"There are {df.isna().sum()} null values in the dataset.")
+# print(f"There are {df.isna().sum()} null values in the dataset.")
 
-# EDA
-numeric_cols = df.select_dtypes(np.number)
-corr = numeric_cols.corr()
-plt.figure(figsize=(20, 20))
-sns.heatmap(corr, annot=True)
-plt.savefig('figs/heatmap.png')
-plt.show()
-
-X = df[['age_at_t0', 'has_hypertension', 'has_hyperlipidemia',
-                                      'has_t2dm','has_t1dm','has_tia',
-                                      'has_cerebrovascular_disease','has_cerebellar_stroke','has_brainstem_stroke',
-                                      'has_cerebral_amyloid_angiopathy','has_amd','has_ocular_hypertension',
-                                      'has_glaucoma','has_retinal_vascular_disorder','has_diabetic_retinopathy']]
+X = numeric_df = df.select_dtypes(include=np.number).drop(columns=['person_id','outcome_dementia'])
 y = df['outcome_dementia']
 
 
@@ -58,21 +46,24 @@ param_grid = [
     {
         'solver': ['liblinear'],
         'l1_ratio': [0, 1],
-        'C': [0.01, 0.1, 1, 10, 100]
+        'C': [0.01, 0.1, 1, 10, 100],
+        'class_weight': ['balanced']
     },
 
     # L1 or L2 with saga
     {
         'solver': ['saga'],
         'l1_ratio': [0, 1],
-        'C': [0.01, 0.1, 1, 10, 100]
+        'C': [0.01, 0.1, 1, 10, 100],
+        'class_weight': ['balanced']
     },
 
     # ElasticNet + saga
     {
         'solver': ['saga'],
         'l1_ratio': [0.1, 0.5, 0.9],
-        'C': [0.01, 0.1, 1, 10, 100]
+        'C': [0.01, 0.1, 1, 10, 100],
+        'class_weight': ['balanced']
     }
 
 ]
@@ -87,10 +78,44 @@ model = CVfit.best_estimator_
 
 y_pred = model.predict(X_test)
 
-print(f"Logistic Regularization with tuned hyperparameters accuracy score: {accuracy_score(y_test, y_pred)}")
-print(f"Logistic Regularization with tuned hyperparameters precision score: {precision_score(y_test, y_pred)}")
-print(f"Logistic Regularization with tuned hyperparameters recall score: {recall_score(y_test, y_pred)}")
-print(f"Logistic Regularization with tuned hyperparameters f1 score: {f1_score(y_test, y_pred)}")
+cm = confusion_matrix(y_test, y_pred)
+tn, fp, fn, tp = cm.ravel()
+
+# Calculate Metrics
+npv = tn / (tn + fn)
+tpr = tp / (tp + fn) # Sensitivity
+fnr = fn / (fn + tp) 
+tnr = tn / (tn + fp) # Specificity
+
+print(f"Logistic Regression accuracy score: {accuracy_score(y_test, y_pred)}")
+print(f"Logistic Regression precision score: {precision_score(y_test, y_pred)}")
+print(f"Logistic Regression recall score: {recall_score(y_test, y_pred)}")
+print(f"Logistic Regression f1 score: {f1_score(y_test, y_pred)}")
+
+print(f"Logistic Regression Confusion Matrix:\n{cm}")
+print(f"Logistic Regression NPV: {npv:.2f}")
+print(f"Logistic Regression TPR: {tpr:.2f}")
+print(f"Logistic Regression FNR: {fnr:.2f}")
+print(f"Logistic Regression TNR: {tnr:.2f}")
+
+# Get predicted probabilities for the positive class
+y_probs = model.predict_proba(X_test)[:, 1]
+
+# Calculate the AUC score
+auc_score = roc_auc_score(y_test, y_probs)
+
+# Plot the ROC curve
+RocCurveDisplay.from_predictions(y_test, y_probs)
+plt.plot([0, 1], [0, 1], linestyle="--", label="Random")
+plt.savefig("figs/ROC_AUC_Curve")
+plt.show()
+
+# Plot the Precision-Recall Curve
+display = PrecisionRecallDisplay.from_estimator(model, X_test, y_test)
+display.ax_.set_title("Precision-Recall Curve")
+plt.tight_layout()
+plt.savefig("figs/precision_recall_curve.png")
+plt.show()
 
 # rf = RandomForestClassifier(random_state=42)
 
