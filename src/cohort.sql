@@ -25,7 +25,7 @@
  Tables written to : your_schema
  Source data from  : omop_cdm_53_pmtx_202203
 
- Execute each step sequentially.
+ Execute each step sequentially. Currently takes about 6.5 minutes total.
  DROP block at bottom — uncomment and run separately before re-running pipeline.
 */
 
@@ -285,7 +285,19 @@ SELECT
     MAX(CASE WHEN co.condition_concept_id = 434337  THEN 1 ELSE 0 END)
         AS retinal_vascular_disorder,
     MAX(CASE WHEN co.condition_concept_id IN (45763583, 4255401, 4252356)
-             THEN 1 ELSE 0 END)                AS diabetic_retinopathy
+             THEN 1 ELSE 0 END)                AS diabetic_retinopathy,
+    MAX(CASE WHEN co.condition_concept_id = 40479576 THEN 1 ELSE 0 END)
+    	AS chronic_dhf, -- chronic diastolic heart failure
+    MAX(CASE WHEN co.condition_concept_id = 378427 THEN 1 ELSE 0 END)
+    	AS tear_film_insufficiency,
+    MAX(CASE WHEN co.condition_concept_id = 435262 THEN 1 ELSE 0 END)
+    	AS primary_open_angle_glaucoma,
+    MAX(CASE WHEN co.condition_concept_id = 4288310 THEN 1 ELSE 0 END)
+    	AS carotid_artery_obstruction,
+    MAX(CASE WHEN co.condition_concept_id = 4169095 THEN 1 ELSE 0 END)
+    	AS bradycardia,
+    MAX(CASE WHEN co.condition_concept_id = 321596 THEN 1 ELSE 0 END)
+    	AS peripheral_venous_insufficiency
 
 -- switch to cohort_labeled for full population or cohort_sample for matched 90k cohorts
 FROM cohort_labeled cs
