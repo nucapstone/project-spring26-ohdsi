@@ -268,6 +268,8 @@ All               1124026  90682  1214708
 We have reviewed [published models](benchmark.md) in order to record benchmark metrics that we aim to match or improve upon by modeling this data. We provide baseline performance of a model on this data, although did not have time to exhaustively optimize a model in the Spring 2026 semester.
 
 ### Known Limitations
+#### Short epidemiological/longitudinal window
+Of 34,808,145 unique patients in this dataset, we are limited to a 5.5 year observation window between January 2017 and June 2022. In terms of longitudinal follow-up, this means that we are predicting the diagnosis of ADRD in a short window preceding diagnosis rather than many years before when preventative measures may be more useful. The average follow-up per patient was 16 months, with a median of 10 months, with 1,214,708 patients meeting all of our inclusion criteria.
 #### Claims-based diagnosis coding
 Many of the biomarkers we were initially planning to investigate do not have measurements. This makes the data less informative as it masks certain measurements (ex: rather than cholesterol measurements, we have indications that people do or do not have hypercholesterolemia).
 #### Dementia prevalence and cohort matching
