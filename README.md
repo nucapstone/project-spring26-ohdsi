@@ -263,9 +263,9 @@ All               1124026  90682  1214708
 
 **While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder**
 
-
-
-
+### Modeling Considerations
+#### Published Models and Evaluation Metrics
+We have reviewed [published models](benchmark.md) in order to record benchmark metrics that we aim to match or improve upon by modeling this data. We provide baseline performance of a model on this data, although did not have time to exhaustively optimize a model in the Spring 2026 semester.
 
 ### Known Limitations
 #### Claims-based diagnosis coding
@@ -273,10 +273,8 @@ Many of the biomarkers we were initially planning to investigate do not have mea
 #### Dementia prevalence and cohort matching
 Sampling the entire OHDSI database, we are able to ensure that cohorts are reproducible between machines. If any subsampling is performed in the future, it is critical to document the seed or random state for reproducibility.
 
-### To-Do
-- Run summary statistics on the cohort (distributions of age and sex across cases and controls).
-- Clean up the repo (delete files that were works in progress but are no longer necessary).
-- Comparison of current classification models listed in references and possibly a baseline that can be used as a starting reference point for further modeling.
+### Next Steps for the Lary Lab
+This repository provides a launchpad for the Lary Lab to finalize modeling performance. We have provided a description of the OHDSI data, methodology for a reproducible cohort, modular details to include any number of diagnostic features in the model, and benchmark metrics for comparison. With further time spent on optimizing a model's performance on this data, compared with the benchmarks provided, the Lary Lab could feasibly publish their results (combined with other modeling and research efforts related to VCID). Our hope is that this body of work accelerates modeling efforts for the Lary Lab and any other research teams at Northeastern University seeking to conduct a retrospective epidemiological study using OHDSI.
 
 ### References
 - [The Book of OHDSI](https://ohdsi.github.io/TheBookOfOhdsi/)
