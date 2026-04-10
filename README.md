@@ -263,20 +263,25 @@ All               1124026  90682  1214708
 
 **While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder**
 
+### Initial Modeling and Comparisons
+#### Initial Models
+Initial models were generated [in this file](src/baseline_classifier.py). Our pipeline involved an 80-20 train-test split with scaled numerical features given that we were dealing with binary traits compared to age which ranged from 60-80+. Due to a large class imbalance, we randomly under sampled patients without dementia, handling class imbalance as well as runtime challenges. We then used a randomized search cross-validation to tune hyperparameters for logistic regression, random forest, and XGBoost classifiers.
 
+#### Published Models and Evaluation Metrics
+We have reviewed published models in order to record benchmark metrics that we aim to match or improve upon by modeling this data. We provide baseline performance of a model on this data, although did not have time to exhaustively optimize a model in the Spring 2026 semester.
 
-
+Comparisons between published models and our initial baseline models can be found [here](benchmark.md).
 
 ### Known Limitations
+#### Short epidemiological/longitudinal window
+Of 34,808,145 unique patients in this dataset, we are limited to a 5.5 year observation window between January 2017 and June 2022. In terms of longitudinal follow-up, this means that we are predicting the diagnosis of ADRD in a short window preceding diagnosis rather than many years before when preventative measures may be more useful. The average follow-up per patient was 16 months, with a median of 10 months, with 1,214,708 patients meeting all of our inclusion criteria.
 #### Claims-based diagnosis coding
 Many of the biomarkers we were initially planning to investigate do not have measurements. This makes the data less informative as it masks certain measurements (ex: rather than cholesterol measurements, we have indications that people do or do not have hypercholesterolemia).
 #### Dementia prevalence and cohort matching
 Sampling the entire OHDSI database, we are able to ensure that cohorts are reproducible between machines. If any subsampling is performed in the future, it is critical to document the seed or random state for reproducibility.
 
-### To-Do
-- Run summary statistics on the cohort (distributions of age and sex across cases and controls).
-- Clean up the repo (delete files that were works in progress but are no longer necessary).
-- Comparison of current classification models listed in references and possibly a baseline that can be used as a starting reference point for further modeling.
+### Next Steps for the Lary Lab
+This repository provides a launchpad for the Lary Lab to finalize modeling performance. We have provided a description of the OHDSI data, methodology for a reproducible cohort, modular details to include any number of diagnostic features in the model, and benchmark metrics for comparison. With further time spent on optimizing a model's performance on this data, compared with the benchmarks provided, the Lary Lab could feasibly publish their results (combined with other modeling and research efforts related to VCID). Our hope is that this body of work accelerates modeling efforts for the Lary Lab and any other research teams at Northeastern University seeking to conduct a retrospective epidemiological study using OHDSI.
 
 ### References
 - [The Book of OHDSI](https://ohdsi.github.io/TheBookOfOhdsi/)
