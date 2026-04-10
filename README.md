@@ -263,9 +263,14 @@ All               1124026  90682  1214708
 
 **While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder**
 
-### Modeling Considerations
+### Initial Modeling and Comparisons
+#### Initial Models
+Initial models were generated [in this file](src/baseline_classifier.py). Our pipeline involved an 80-20 train-test split with scaled numerical features given that we were dealing with binary traits compared to age which ranged from 60-80+. Due to a large class imbalance, we randomly under sampled patients without dementia, handling class imbalance as well as runtime challenges. We then used a randomized search cross-validation to tune hyperparameters for logistic regression, random forest, and XGBoost classifiers.
+
 #### Published Models and Evaluation Metrics
-We have reviewed [published models](benchmark.md) in order to record benchmark metrics that we aim to match or improve upon by modeling this data. We provide baseline performance of a model on this data, although did not have time to exhaustively optimize a model in the Spring 2026 semester.
+We have reviewed published models in order to record benchmark metrics that we aim to match or improve upon by modeling this data. We provide baseline performance of a model on this data, although did not have time to exhaustively optimize a model in the Spring 2026 semester.
+
+Comparisons between published models and our initial baseline models can be found [here](benchmark.md).
 
 ### Known Limitations
 #### Short epidemiological/longitudinal window

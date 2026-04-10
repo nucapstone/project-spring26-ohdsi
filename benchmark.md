@@ -4,12 +4,14 @@
 
 This study follows patients for 20 years with an incident dementia rate of 4%. AUC ranged between 0.70-0.80, sensitivity was 0.77, specificity was 0.63, and the negative predictive value (NPV) was 0.98.
 
+Features included age, sex, years of education, systolic blood pressure, BMI, total cholesterol, physical activity level, *APOE* $\varepsilon$ 4 status, and follow-up time.
+
 |AUC|Sensitivity|Specificity|NPV|
 |-|-|-|-|
 |0.70-0.80|0.77|0.63|0.98|
 
 ### [External Validation of the eRADAR Risk Score for Detecting Undiagnosed Dementia in Two Real-World Healthcare Systems](https://pubmed.ncbi.nlm.nih.gov/35906516/)
-This study follows patients for 12-months after a 2-year lookback window to diagnose incident dementia in the following 12 months. eRADAR risk scores were generated to aid in the identification of the 50% of dementia patients that otherwise go undiagnosed.
+This study follows patients for 12-months after a 2-year lookback window to diagnose incident dementia in the following 12 months. Features include EHR data (including vital signs, diagnoses, medications, and utilization in the prior 2 years). eRADAR risk scores were generated to aid in the identification of the 50% of dementia patients that otherwise go undiagnosed.
 
 Metrics at eRADAR dementia risk score cut-off at the 90th percentile:
 |AUC|Sensitivity|Specificity|PPV|
@@ -24,9 +26,6 @@ Knowledge-driven features from clinicians includes medical diagnoses of obesity,
 
 For the data-driven features, the authors used all variables captured by the EHRs, including demographic and behavioral variables, such as age, gender, race, ethnicity, marital status, and smoking status. They included all discrete diagnoses, all medications, and all procedure codes recorded in patients’ EHRs as categorical features. To address the sparsity of features, they grouped similar features.
 
-#### Comparisons for our cohort
-The cohort we have developed focuses on clinical diagnoses alone, as medications and procedures were not included in the initial scope of this project. They may be worth considering in future research by the Lary Lab. We also limited our feature set to diagnoses closely related to the measurements initially identified by the Lary Lab in addition to a few extra diagnoses that were significant in the chi-square test. It may be worthwhile to expand the scope of diagnoses included in this cohort. For feasibility and proof of concept, we limited the number of diagnoses given the large number of patients we have, time constraints, and available computational power.
-
 We are especially interested in the 3-year prediction window given it offers a direct comparison to the cohort we have developed.
 
 |Prediction Window (Years)|AUC|Sensitivity|Specificity|PPV|NPV|
@@ -36,3 +35,47 @@ We are especially interested in the 3-year prediction window given it offers a d
 |3|0.841-0.884|0.772-0.815|0.764-0.805|0.372-0.444|0.947-0.958|
 |5|0.830-0.858|0.750-0.800|0.742-0.786|0.429-0.491|0.932-0.942|
 
+### Our Cohort and Models
+The cohort we have developed focuses on clinical diagnoses alone, as medications and procedures were not included in the initial scope of this project. They may be worth considering in future research by the Lary Lab. We also limited our feature set to diagnoses closely related to the measurements initially identified by the Lary Lab in addition to a few extra diagnoses that were significant in the chi-square test. It may be worthwhile to expand the scope of diagnoses included in this cohort. For feasibility and proof of concept, we limited the number of diagnoses given the large number of patients we have, time constraints, and available computational power.
+
+#### Model Performance Summary
+
+| Metric | Logistic Regression | Random Forest | XGBoost |
+|---|---|---|---|
+| **Accuracy** | 0.6279 | 0.6379 | 0.6348 |
+| **Precision** | 0.1302 | 0.1317 | 0.1314 |
+| **Recall** | 0.7015 | 0.6882 | 0.6935 |
+| **F1** | 0.2196 | 0.2211 | 0.2209 |
+| **ROC-AUC** | 0.7101 | 0.7113 | 0.7120 |
+| **Sensitivity (TPR)** | 0.7015 | 0.6882 | 0.6935 |
+| **Specificity (TNR)** | 0.6219 | 0.6339 | 0.6301 |
+| **NPV** | 0.9627 | 0.9618 | 0.9622 |
+| **FNR** | 0.2985 | 0.3118 | 0.3065 |
+
+#### Confusion Matrices
+
+| | Logistic Regression | Random Forest | XGBoost |
+|---|---|---|---|
+| **TN** | 139,810 | 142,499 | 141,649 |
+| **FP** | 84,996 | 82,307 | 83,157 |
+| **FN** | 5,413 | 5,654 | 5,558 |
+| **TP** | 12,723 | 12,482 | 12,578 |
+
+#### Best Hyperparameters (Optimized with Random Search Cross-Validation)
+
+| Parameter | Logistic Regression | Random Forest | XGBoost |
+|---|---|---|---|
+| `solver` | liblinear | — | — |
+| `penalty` | l1 | — | — |
+| `C` | 0.01 | — | — |
+| `n_estimators` | — | 300 | 500 |
+| `max_depth` | — | 20 | 3 |
+| `min_samples_split` | — | 2 | — |
+| `min_samples_leaf` | — | 5 | — |
+| `max_features` | — | log2 | — |
+| `learning_rate` | — | — | 0.1 |
+| `subsample` | — | — | 0.7 |
+| `colsample_bytree` | — | — | 1.0 |
+| `min_child_weight` | — | — | 1 |
+| `gamma` | — | — | 0 |
+| **CV F1** | 0.6754 | 0.6701 | 0.6710 |
