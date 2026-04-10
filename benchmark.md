@@ -38,6 +38,8 @@ We are especially interested in the 3-year prediction window given it offers a d
 ### Our Cohort and Models
 The cohort we have developed focuses on clinical diagnoses alone, as medications and procedures were not included in the initial scope of this project. They may be worth considering in future research by the Lary Lab. We also limited our feature set to diagnoses closely related to the measurements initially identified by the Lary Lab in addition to a few extra diagnoses that were significant in the chi-square test. It may be worthwhile to expand the scope of diagnoses included in this cohort. For feasibility and proof of concept, we limited the number of diagnoses given the large number of patients we have, time constraints, and available computational power.
 
+Feature selection is one area of exploration we did not spend as much time on and would recommend future groups investigate.
+
 #### Model Performance Summary
 
 | Metric | Logistic Regression | Random Forest | XGBoost |
@@ -79,3 +81,13 @@ The cohort we have developed focuses on clinical diagnoses alone, as medications
 | `min_child_weight` | — | — | 1 |
 | `gamma` | — | — | 0 |
 | **CV F1** | 0.6754 | 0.6701 | 0.6710 |
+
+#### ROC-AUC Curves
+![Logistic Regression ROC-AUC](figs/ROC_AUC_Curve_lr.png)
+![Random Forest ROC-AUC](figs/ROC_AUC_Curve_rf.png)
+![XGBoost ROC-AUC](figs/ROC_AUC_Curve_xgb.png)
+
+#### Precision-Recall Curves
+![Logistic Regression PR](figs/precision_recall_curve_lr.png)
+![Random Forest PR](figs/precision_recall_curve_rf.png)
+![XGBoost PR](figs/precision_recall_curve_xgb.png)
