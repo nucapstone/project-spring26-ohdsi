@@ -79,4 +79,13 @@ All features extracted from the lookback window ([T0 − 12 months, T0]) only.
 |Retinal vascular disorder|434337|Binary|
 |Diabetic retinopathy|45763583, 4255401, 4252356|Binary|
 
+## Cohort Demographics 
 
+Looking at ages, there is relatively uniform distribution for age and age based on sex for patients without incident dementia, whereas the age of patients with dementia is left skewed. The older an individual, the higher the probability of incident dementia.
+![Age Distribution](figs/Age_Distribution.png)
+ 
+We can also compare that against Gender, there are generally more females in this cohort than males. 
+![Age Distribution Based on Diagnosis](figs/Age_Distribution_bySex.png)
+
+
+There is a spike for birth year 1937, which could be a clerical error or the default birth year that OHDSI assigned patients who's birth years were unknown
