@@ -261,7 +261,63 @@ has_condition
 All               1124026  90682  1214708
 ```
 
-**While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder**
+While there are many other conditions, these had high significance as well as literature to confirm these findings while being in the same vein as the types of conditions that were of interest to the stakeholder
+
+#### EDA
+The following figures and findings can be reproduced with the [eda_figs](src/eda_figs.py) file.
+
+The features appear to be largely uncorrelated with each other and incident dementia.
+
+`Feature Correlation Heatmap`
+![Feature Correlation Heatmap](figs/heatmap.png)
+
+There are more females () than males that met eligibility criteria in our cohort for the control and dementia populations.
+
+`Countplot of Male and Female Patients`
+![Sex_Countplot](figs/Sex_Countplot.png)
+|Sex|Incident Dementia|Count|
+|-|-|-|
+|F|0|630961|
+|F|1|55578|
+|M|0|493064|
+|M|1|35104|
+
+Looking at ages, there is relatively uniform distribution for age and age based on sex for patients without incident dementia, whereas the age of patients with dementia is left skewed. The older an individual, the higher the probability of incident dementia.
+
+`Age Distributuion for people without dementia (0) and with dementia (1)`
+![Age Distribution](figs/Age_Distribution.png)
+`Age Distribution by Sex for people without dementia (0) and with dementia (1).`
+![Age Distribution by Sex](figs/Age_Distribution_bySex.png)
+
+The large spike at 81 years old is assumed by us to be an artifact of the OHDSI data due to birth year imputation. During exploratory analysis, an unexpected spike of ~213,000 patients at age 81 was observed in the cohort age distribution. Investigation revealed that 212,689 patients shared an identical birth year of 1937, compared to ~800 for neighboring birth years, with T0 dates clustering in early January 2018. This led us to believe that OHDSI had assigned a default birth year of 1937 to patients with unknown birth dates.
+
+We attempted modeling the data by excluding these patients given their imputed age so that we could better attribute the true signal of age to incident dementia. This generally worsened models, likely given that many (or at least more) of these patients are diagnosed with dementia so we end up having 37,435 fewer patients with a diagnosis of dementia to train and test on.
+
+|Age at T0|Dementia|No Dementia|Total|
+|-|-|-|-|
+|60|1571|80471|82042|
+|61|959|47773|48732|
+|62|946|44146|45092|
+|63|671|26890|27561|
+|64|735|25581|26316|
+|65|772|24617|25389|
+|66|1933|52772|54705|
+|67|1897|53173|55070|
+|68|1938|48729|50667|
+|69|2175|49992|52167|
+|70|2563|53366|55929|
+|71|3216|61798|65014|
+|72|3369|57374|60743|
+|73|2956|45403|48359|
+|74|3157|42121|45278|
+|75|3759|45988|49747|
+|76|4153|45628|49781|
+|77|4089|40118|44207|
+|78|4041|36369|40410|
+|79|3802|32623|36425|
+|80|3858|29998|33856|
+|81|37435|176053|213488|
+|82|687|3043|3730|
 
 ### Initial Modeling and Comparisons
 #### Initial Models
@@ -281,7 +337,7 @@ Many of the biomarkers we were initially planning to investigate do not have mea
 Sampling the entire OHDSI database, we are able to ensure that cohorts are reproducible between machines. If any subsampling is performed in the future, it is critical to document the seed or random state for reproducibility.
 
 ### Next Steps for the Lary Lab
-This repository provides a launchpad for the Lary Lab to finalize modeling performance. We have provided a description of the OHDSI data, methodology for a reproducible cohort, modular details to include any number of diagnostic features in the model, and benchmark metrics for comparison. With further time spent on optimizing a model's performance on this data, compared with the benchmarks provided, the Lary Lab could feasibly publish their results (combined with other modeling and research efforts related to VCID). Our hope is that this body of work accelerates modeling efforts for the Lary Lab and any other research teams at Northeastern University seeking to conduct a retrospective epidemiological study using OHDSI.
+This repository provides a launchpad for the Lary Lab to finalize modeling performance. We have provided a description of the OHDSI data, methodology for a reproducible cohort, modular details to include any number of diagnostic features in the model, and benchmark metrics for comparison. With further time spent on optimizing a model's performance on this data, compared with the benchmarks provided, the Lary Lab could feasibly publish their results (combined with other modeling and research efforts related to VCID). To optimize the model, we recommend spending greater time on feature selection and considering some heavier computational methods (more thorough grid search CV). Our hope is that this body of work accelerates modeling efforts for the Lary Lab and any other research teams at Northeastern University seeking to conduct a retrospective epidemiological study using OHDSI.
 
 ### References
 - [The Book of OHDSI](https://ohdsi.github.io/TheBookOfOhdsi/)
