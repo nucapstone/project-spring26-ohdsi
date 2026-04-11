@@ -40,7 +40,7 @@ Within IQVIA's PharMetrics Plus data, we have access to billable claims data, wh
   - A credentials.py file
     - The example below demonstrates how to reference your credentials when connecting to DBeaver.
     - Ensure this is included in a .gitignore file. Do not push your credentials to GitHub!
-  - A [cohort_conn.py](src/cohort_conn.py)
+  - A file connecting to your cohort for analysis
     - Import your dataframe with the example connection below.
 
 `credentials.py`
@@ -95,7 +95,7 @@ The current cohort design ingests data from all eligible participants in the OHD
 |Data source | OMOP Common Data Model (OMOP CDM v5.3)|
 |Schema | omop_cdm_53_pmtx_202203 |
 |Data type | Claims-based |
-| Approximate date range | January 2017 – June 2022 (~5.5 years)|
+|Date range | January 2017 – June 2022 (~5.5 years)|
 
 **T0:** First clinical visit (any type) on or after age 60, with 12 months of prior observation and 3 years of follow-up observation.
 
