@@ -91,7 +91,7 @@ The current cohort design ingests data from all eligible participants in the OHD
 
 | Field | Detail | 
 |-------|--------|
-|Type | Population-based cohort study|
+|Type | Epidemiological cohort study|
 |Data source | OMOP Common Data Model (OMOP CDM v5.3)|
 |Schema | omop_cdm_53_pmtx_202203 |
 |Data type | Claims-based |
