@@ -40,47 +40,47 @@ The cohort we have developed focuses on clinical diagnoses alone, as medications
 
 Feature selection is one area of exploration we did not spend as much time on and would recommend future groups investigate.
 
-#### Model Performance Summary
+### Model Performance Summary
 
 | Metric | Logistic Regression | Random Forest | XGBoost |
 |---|---|---|---|
-| **Accuracy** | 0.6279 | 0.6379 | 0.6348 |
-| **Precision** | 0.1302 | 0.1317 | 0.1314 |
-| **Recall** | 0.7015 | 0.6882 | 0.6935 |
-| **F1** | 0.2196 | 0.2211 | 0.2209 |
-| **ROC-AUC** | 0.7101 | 0.7113 | 0.7120 |
-| **Sensitivity (TPR)** | 0.7015 | 0.6882 | 0.6935 |
-| **Specificity (TNR)** | 0.6219 | 0.6339 | 0.6301 |
-| **NPV** | 0.9627 | 0.9618 | 0.9622 |
-| **FNR** | 0.2985 | 0.3118 | 0.3065 |
+| **Accuracy** | 0.6310 | 0.6281 | 0.6479 |
+| **Precision** | 0.1311 | 0.1307 | 0.1342 |
+| **Recall** | 0.7007 | 0.7045 | 0.6820 |
+| **F1** | 0.2209 | 0.2205 | 0.2243 |
+| **ROC-AUC** | 0.7119 | 0.7118 | 0.7132 |
+| **Sensitivity (TPR)** | 0.7007 | 0.7045 | 0.6820 |
+| **Specificity (TNR)** | 0.6254 | 0.6220 | 0.6451 |
+| **NPV** | 0.9628 | 0.9631 | 0.9618 |
+| **FNR** | 0.2993 | 0.2955 | 0.3180 |
 
-#### Confusion Matrices
+### Confusion Matrices
 
 | | Logistic Regression | Random Forest | XGBoost |
 |---|---|---|---|
-| **TN** | 139,810 | 142,499 | 141,649 |
-| **FP** | 84,996 | 82,307 | 83,157 |
-| **FN** | 5,413 | 5,654 | 5,558 |
-| **TP** | 12,723 | 12,482 | 12,578 |
+| **TN** | 140,584 | 139,819 | 145,031 |
+| **FP** | 84,222 | 84,987 | 79,775 |
+| **FN** | 5,429 | 5,360 | 5,767 |
+| **TP** | 12,707 | 12,776 | 12,369 |
 
-#### Best Hyperparameters (Optimized with Random Search Cross-Validation)
+### Best Hyperparameters
 
 | Parameter | Logistic Regression | Random Forest | XGBoost |
 |---|---|---|---|
 | `solver` | liblinear | — | — |
 | `penalty` | l1 | — | — |
-| `C` | 0.01 | — | — |
+| `C` | 0.1 | — | — |
 | `n_estimators` | — | 300 | 500 |
-| `max_depth` | — | 20 | 3 |
-| `min_samples_split` | — | 2 | — |
+| `max_depth` | — | 10 | 3 |
+| `min_samples_split` | — | 5 | — |
 | `min_samples_leaf` | — | 5 | — |
-| `max_features` | — | log2 | — |
-| `learning_rate` | — | — | 0.1 |
-| `subsample` | — | — | 0.7 |
+| `max_features` | — | sqrt | — |
+| `learning_rate` | — | — | 0.05 |
+| `subsample` | — | — | 0.85 |
 | `colsample_bytree` | — | — | 1.0 |
-| `min_child_weight` | — | — | 1 |
-| `gamma` | — | — | 0 |
-| **CV F1** | 0.6754 | 0.6701 | 0.6710 |
+| `min_child_weight` | — | — | 5 |
+| `gamma` | — | — | 0.1 |
+| **CV F1** | 0.6734 | 0.6726 | 0.6677 |
 
 #### ROC-AUC Curves
 ![Logistic Regression ROC-AUC](figs/ROC_AUC_Curve_lr.png)
