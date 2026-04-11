@@ -10,9 +10,10 @@ export default {
   // {
   //     //name: "Examples",
       pages: [
-        {name: "Motivation", path: "/motivations"},
+        {name: "Data Overview", path: "/data"},
         {name: "Cohort", path: "/cohort"},
-        {name:"Findings", path:"/findings"}
+        {name:"Findings", path:"/findings"},
+        {name:'Model', path:"/model"}
       ],
   //   }
   // ],

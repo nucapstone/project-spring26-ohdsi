@@ -51,3 +51,21 @@ Robles Bayón, A., Gude Sampedro, F., & Torregrosa Quesada, J. M. (2014). Bradyc
 This large nationwide cohort study investigated the relationship between varicose veins (how  of peripheral venous insufficiency manifests) and the subsequent development of dementia.  Notably, the study also found that treatment or surgical procedure for varicose veins was significantly associated with a decreased risk of vascular dementia suggesting that managing peripheral venous disease may decrease the chance of a VCID Diagnosis later. 
 
 Woo HG, Park JY, Park MS, Song TJ. Association between varicose veins and occurrence of dementia: A nationwide population-based cohort study. PLoS One. 2025 Apr 30;20(4):e0322892. doi: 10.1371/journal.pone.0322892. PMID: 40305494; PMCID: PMC12043132
+
+## Table 
+
+Here is a searchable table for your convenience. There look like there are approximately 2500 codes that could be statistically significant in diagnosing Dementia patients. This requires knowledge of the Atlas Dictionary, but could be a starting point in finding correlated conditions.
+
+
+```js
+const sig = await FileAttachment('data/sig_adjust.csv').csv();
+```
+```js 
+const searchInput = Inputs.search(sig, {
+  placeholder: "Search Concept Ids",
+});
+const search = view(searchInput);
+```
+```js
+Inputs.table(search)
+```
