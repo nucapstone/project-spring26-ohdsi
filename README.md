@@ -352,3 +352,5 @@ This repository provides a launchpad for the Lary Lab to finalize modeling perfo
 
 - [Early prediction of Alzheimer’s disease and related dementias using real-world electronic health records
 ](https://pmc.ncbi.nlm.nih.gov/articles/PMC10976442/)
+
+- [Vascular Contributions to Cognitive Impairment and Dementia in the United States: Prevalence and Incidence: A Scientific Statement From the American Heart Association](https://www.ahajournals.org/doi/10.1161/STR.0000000000000494)
