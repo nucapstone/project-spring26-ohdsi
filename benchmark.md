@@ -91,3 +91,7 @@ Feature selection is one area of exploration we did not spend as much time on an
 ![Logistic Regression PR](figs/precision_recall_curve_lr.png)
 ![Random Forest PR](figs/precision_recall_curve_rf.png)
 ![XGBoost PR](figs/precision_recall_curve_xgb.png)
+
+### Modeling without 81 year olds
+#### Removing individuals with the 1937 birth year imputation generally worsened model performance, so we will be leaving them in for now. This problem would benefit from further exploration going forward.
+
