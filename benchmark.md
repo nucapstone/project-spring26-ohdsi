@@ -82,6 +82,8 @@ Feature selection is one area of exploration we did not spend as much time on an
 | `gamma` | — | — | 0.1 |
 | **CV F1** | 0.6734 | 0.6726 | 0.6677 |
 
+#### Currently, this model generally underperforms what is available in the literature. That being said, we believe that more time spent on feature selection and finetuning the hyperparameters of these models could match or improve upon what is available in the literature.
+
 #### ROC-AUC Curves
 ![Logistic Regression ROC-AUC](figs/ROC_AUC_Curve_lr.png)
 ![Random Forest ROC-AUC](figs/ROC_AUC_Curve_rf.png)
