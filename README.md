@@ -1,15 +1,42 @@
 # OHDSI-2
 ## Discovery of biomarkers for the detection of vascular dementia
 ### Team lead:
-Ryan Webb, MS in Data Science Candidate, Roux Institute,
+[Ryan Webb](bios.md), MS in Data Science Candidate, Roux Institute,
 Northeastern University, webb.ry@northeastern.edu
 
 ### Team Members:
-Erin Pryor, MS in Data Science Candidate, Roux Institute,
+[Erin Pryor](bios.md), MS in Data Science Candidate, Roux Institute,
 Northeastern University, pryor.e@northeastern.edu
 
 ### Stakeholder
 Christine Lary, PhD, Research Associate Professor, Roux Institute, Northeastern University, c.lary@northeastern.edu
+
+### Table of Contents
+* [TLDR](#tldr)
+* [Project Description](#project-description)
+* [Accessing OHDSI](#accessing-ohdsi)
+* [Study Design](#study-design)
+* [Significant Features](#preliminary-findings)
+* [EDA](#eda)
+* [Modeling](#initial-modeling-and-comparisons)
+* [Known Limitations](#known-limitations)
+* [Next Steps for Lary Lab](#next-steps-for-the-lary-lab)
+* [Next Steps for Epidemiological Researchers](#next-steps-for-research-at-neu-with-epidemiological-cohorts)
+
+### Reproducibility TL;DR
+Click these links for code and instructions to recreate this body of work, improve upon it, or make your own epidemiological cohort study.
+#### OHDSI
+- [Click HERE](ohdsi_setup.md) for instructions to access OHDSI.
+#### Cohort
+- [Click HERE](src/cohort.sql) for SQL code to build an epidemiological cohort. Modular sections are noted in the code.
+#### EDA
+- [Click HERE](src/eda_figs.py) for Python code to reproduce EDA figures.
+#### Significant Features
+- [Click HERE](sig_adjust.csv) for significant features to consider including.
+- [Click HERE](src/get_conditions.sql) for SQL code to get all conditions.
+- [Click HERE](src/find_conditions.py) for Python code to analyze significant conditions.
+#### Modeling
+- [Click HERE](src/baseline_classifier.py) for baseline classifier code.
 
 ### Project Description
 #### Original:
@@ -144,7 +171,7 @@ All eligible patients meeting inclusion criteria are included initially. Sex and
 *Note: 90+ age stratum excluded from controls as no cases are present in this stratum.*
 
 #### Feature Set
-All features extracted from the lookback window ([T0 − 12 months, T0]) only. For further research within OHDSI, concept ideas could be added/removed from [cohort.sql](cohort.sql) to adjust the features in the model. 
+All features extracted from the lookback window ([T0 − 12 months, T0]) only. For further research within OHDSI, concept ideas could be added/removed from [cohort.sql](cohort.sql) to adjust the features in the model. We recommend taking this step to improve model performance. Features currently included in this cohort are those related to biomarkers and features from the initial project description as well as significant features with supporting literature. It is also worth considering adding medications and/or procedures to this feature set.
 
 This can be done by adding the following in the ```CREATE TABLE cohort_features``` call. Similarly, irrelevant features could be removed by deleting such clauses, although that could be done with Python as well.
 
@@ -343,6 +370,9 @@ Sampling the entire OHDSI database, we are able to ensure that cohorts are repro
 
 ### Next Steps for the Lary Lab
 This repository provides a launchpad for the Lary Lab to finalize modeling performance. We have provided a description of the OHDSI data, methodology for a reproducible cohort, modular details to include any number of diagnostic features in the model, and benchmark metrics for comparison. With further time spent on optimizing a model's performance on this data, compared with the benchmarks provided, the Lary Lab could feasibly publish their results (combined with other modeling and research efforts related to VCID). To optimize the model, we recommend spending greater time on feature selection and considering some heavier computational methods (more thorough grid search CV). Our hope is that this body of work accelerates modeling efforts for the Lary Lab and any other research teams at Northeastern University seeking to conduct a retrospective epidemiological study using OHDSI.
+
+### Next Steps for Research at NEU with Epidemiological Cohorts
+This repository provides steps to create an epidemiological cohort in the OHDSI dataset with the ability to adjust ingested features as needed.
 
 ### References
 - [The Book of OHDSI](https://ohdsi.github.io/TheBookOfOhdsi/)

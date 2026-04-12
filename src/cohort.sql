@@ -29,6 +29,7 @@
  DROP block at bottom — uncomment and run separately before re-running pipeline.
 */
 
+-- Update your_schema!
 SET search_path TO your_schema, omop_cdm_53_pmtx_202203;
 
 -- Random seed for reproducibility
@@ -38,6 +39,7 @@ SET SEED TO 0.42;
 /*
  1. DEMENTIA CONCEPT SET
  Collecting the diagnoses that fall within dementia and impaired cognition related to ADRD
+ Update these concept IDs to refine target variables for dementia research or other epidemiological cohort building
 */
 
 CREATE TABLE dementia_concepts AS
@@ -86,6 +88,7 @@ GROUP BY person_id;
    - 12 months of observation before the visit date
    - 3 years of observation after the visit date
    - No dementia diagnosis before or on T0
+ Update lookback window, follow-up window, and age at study entry
 */
 
 CREATE TABLE cohort_index AS
@@ -106,7 +109,7 @@ FROM (
             WHEN 8532 THEN 'F'
         END AS sex,
         vo.visit_start_date AS t0,
-        DATEADD(month, -12, vo.visit_start_date) AS feature_window_start,
+        DATEADD(month, -12, vo.visit_start_date) AS feature_window_start, -- Lookback window
         vo.visit_start_date AS feature_window_end,
         EXTRACT(YEAR FROM vo.visit_start_date)::INT - p.year_of_birth AS age_at_t0,
 
@@ -121,7 +124,7 @@ FROM (
         ON vo.person_id = p.person_id
 
     WHERE
-        (EXTRACT(YEAR FROM vo.visit_start_date)::INT - p.year_of_birth) >= 60
+        (EXTRACT(YEAR FROM vo.visit_start_date)::INT - p.year_of_birth) >= 60 -- Age inclusion criteria
 
         -- Used EXISTS to ensure same t0 visit is validated and 
         -- we only take the first observation window per person
@@ -129,10 +132,10 @@ FROM (
             SELECT 1
             FROM observation_period op
             WHERE op.person_id = p.person_id
-              AND op.observation_period_start_date <= DATEADD(month, -12, vo.visit_start_date)
-              AND op.observation_period_end_date >= DATEADD(year, 3, vo.visit_start_date)
+              AND op.observation_period_start_date <= DATEADD(month, -12, vo.visit_start_date) -- Lookback window
+              AND op.observation_period_end_date >= DATEADD(year, 3, vo.visit_start_date) -- Follow-up period
         )
-
+        -- Gets first eligible visit
         AND NOT EXISTS (
             SELECT 1
             FROM person_dementia_any pda
@@ -241,6 +244,9 @@ WHERE
 
  To use full population: replace cohort_sample with cohort_labeled
  in the FROM clause and GROUP BY below.
+
+ Simply add condition concept IDs with the same syntax and structure to ingest more features.
+ Similar joins could be done for medications, procedures, etc.
 */
 
 CREATE TABLE cohort_features AS
