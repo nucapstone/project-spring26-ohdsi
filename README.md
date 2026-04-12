@@ -188,6 +188,11 @@ MAX(CASE WHEN co.condition_concept_id = chosen_concept_id_here  THEN 1 ELSE 0 EN
 ### Preliminary Findings 
 #### Methodology
 Using the epidimilogical cohort you are able to use [get_conditions.sql](src/get_conditions.sql) to link your people_id to any unique condition a patient would have exhibited before T0.  From this table you are able to run chi square testing to find diagnoises that occured more significnatly in patients with the targeted contidition ID (Dementia for this cohort).  Using [find_condition.py](src/find_conditions.py) This will loop through all conditions and run a chi-square test on them, outputting conditions.csv, significant_condtions.csv, which has the conditions where the p value is <.05 and sig_adjust.csv which has the adjusted p value taking into account the amount of variables there are. This takes a bit of time to run as there are over 10,000 conditions. 
+Find Conditions produces 3 CSV files 
+
+* [Conditions.csv](/conditions.csv) This csv contains all conditions that are explored along with their chi square value and the p values produced
+* [Significant Conditions](/significant_conditions.csv) This csv contains only coniditions with a p value under .05, and therefore are considered statistically significant
+* [Adjusted P Value](/sig_adjust.csv) This csv only contains an adjusted p value of under .05. This is used to correct the amount of possible false positive rates with multiple testing. 
 
 #### Findings
 
