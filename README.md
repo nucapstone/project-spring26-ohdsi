@@ -22,6 +22,7 @@ Christine Lary, PhD, Research Associate Professor, Roux Institute, Northeastern 
 * [Known Limitations](#known-limitations)
 * [Next Steps for Lary Lab](#next-steps-for-the-lary-lab)
 * [Next Steps for Epidemiological Researchers](#next-steps-for-research-at-neu-with-epidemiological-cohorts)
+* [References](#references)
 
 ### Reproducibility TL;DR
 Click these links for code and instructions to recreate this body of work, improve upon it, or make your own epidemiological cohort study.
