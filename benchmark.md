@@ -1,5 +1,12 @@
 # Review of 3 Published Models for Performance Comparison
 
+|Paper|Lookback window|Follow-up period|Incident dementia rate|Features|Modeling technique|
+|-|-|-|-|-|-|
+|Kivipelto et al. Lancet Neurol. 2006|Single midlife assessment (no formal lookback window)|20 years|4%|Age, sex, years of education, systolic blood pressure, BMI, total cholesterol, physical activity level, APOE ε4 status, follow-up time|Logistic regression; β coefficients summed into a weighted integer risk score (range 0–15)|
+|Coley et al. J Gen Intern Med. 2023|2 years (prior EHR data)|12 months|11.1 per 1,000 person-years (KPWA); 4.6 per 1,000 person-years (UCSF)|EHR-derived: vital signs, diagnoses, medications, and healthcare utilization over the prior 2 years|LASSO-penalized logistic regression (eRADAR score); external validation study|
+|Li et al. Alzheimers Dement. 2023|Not specified (EHR-based)|0, 1, 3, and 5 years prior to diagnosis|23,835 ADRD cases out of ~1,062,478 total patients (~2.2%)|Both knowledge-driven (established ADRD risk factors) and data-driven (ML-selected) EHR features including diagnoses, medications, labs, and procedures|Gradient boosting trees (GBT) and logistic regression (LR), with both knowledge-driven and data-driven feature selection; GBT + data-driven approach achieved best AUC|
+
+
 ### [Risk score for the prediction of dementia risk in 20 years among middle aged people: a longitudinal, population-based study](https://pubmed.ncbi.nlm.nih.gov/16914401/)
 
 This study follows patients for 20 years with an incident dementia rate of 4%. AUC ranged between 0.70-0.80, sensitivity was 0.77, specificity was 0.63, and the negative predictive value (NPV) was 0.98.
