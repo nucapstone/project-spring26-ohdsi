@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Cohort | Dementia Diagnosis Exploration</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="modulepreload" href="./_observablehq/client.598f0269.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "./_observablehq/client.598f0269.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Dementia Diagnosis Exploration</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./data">Data Overview</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./cohort">Cohort</a></li>
+    <li class="observablehq-link"><a href="./findings">Findings</a></li>
+    <li class="observablehq-link"><a href="./model">Model</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#cohort-demographics">Cohort Demographics</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="cohort" tabindex="-1"><a class="observablehq-header-anchor" href="#cohort">Cohort</a></h1>
+<p>The current cohort design ingests data from all eligible participants in the OHDSI database.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type</td>
+<td>Population-based cohort study</td>
+</tr>
+<tr>
+<td>Data source</td>
+<td>OMOP Common Data Model (OMOP CDM v5.3)</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>omop_cdm_53_pmtx_202203</td>
+</tr>
+<tr>
+<td>Data type</td>
+<td>Claims-based</td>
+</tr>
+<tr>
+<td>Approximate date range</td>
+<td>January 2017 – June 2022 (~5.5 years)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>T0:</strong> First clinical visit (any type) on or after age 60, with 12 months of prior observation and 3 years of follow-up observation.</p>
+<p><strong>Lookback window:</strong> 12 months before T0. All predictor features are extracted in this timeframe.</p>
+<p><strong>Outcome window:</strong> 3 years after T0. Incident dementia diagnosis assessed within those 3 years.</p>
+<h4 id="inclusion-criteria" tabindex="-1"><a class="observablehq-header-anchor" href="#inclusion-criteria">Inclusion Criteria</a></h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Age at T0 ≥ 60</td>
+<td>Calculated as calendar year of T0 minus birth year</td>
+</tr>
+<tr>
+<td>First clinical encounter</td>
+<td>T0 = first visit (any type) on or after age 60</td>
+</tr>
+<tr>
+<td>12 months observation before T0</td>
+<td>Any observation period covering [T0 − 12mo, T0]</td>
+</tr>
+<tr>
+<td>3 years observation after T0</td>
+<td>Any observation period extending to T0 + 3 years</td>
+</tr>
+<tr>
+<td>No dementia before T0</td>
+<td>No dementia or impaired cognition code at or before T0 (incident dementia only)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="outcome-definition" tabindex="-1"><a class="observablehq-header-anchor" href="#outcome-definition">Outcome Definition</a></h4>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Incident dementia (1)</td>
+<td>First dementia diagnosis occurring within [T0, T0 + 3 years]</td>
+</tr>
+<tr>
+<td>Dementia-free (0)</td>
+<td>No dementia diagnosis at any point through T0 + 3 years</td>
+</tr>
+</tbody>
+</table>
+<p>Dementia was defined using CONCEPT_ANCESTOR values from two top-level concepts:</p>
+<ul>
+<li>[4182210 — Dementia]</li>
+<li>[443432 — Impaired cognition] (included to capture ADRD-related diagnoses and prevent outcome leakage)</li>
+</ul>
+<h4 id="cohort-size-and-incidence" tabindex="-1"><a class="observablehq-header-anchor" href="#cohort-size-and-incidence">Cohort Size and Incidence</a></h4>
+<p>All eligible patients meeting inclusion criteria are included initially. Sex and age are retained as model features rather than matching variables.</p>
+<p><strong>Observed incidence:</strong> 90,682 cases out of 1,214,708 eligible patients (~7.5%).</p>
+<p><strong>Incidence &gt; 5%:</strong> Controls are not downsampled using stratified random sampling to match the age and sex distribution of cases. [</p>
+<h4 id="feature-set" tabindex="-1"><a class="observablehq-header-anchor" href="#feature-set">Feature Set</a></h4>
+<p>All features extracted from the lookback window ([T0 − 12 months, T0]) only.</p>
+<h4 id="demographics" tabindex="-1"><a class="observablehq-header-anchor" href="#demographics">Demographics</a></h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Age at T0</td>
+<td>Continuous</td>
+</tr>
+<tr>
+<td>Sex</td>
+<td>Binary (M/F)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cardiometabolic" tabindex="-1"><a class="observablehq-header-anchor" href="#cardiometabolic">Cardiometabolic</a></h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Concept ID</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Essential hypertension</td>
+<td>320128</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Hyperlipidemia</td>
+<td>432867</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Type 2 diabetes mellitus</td>
+<td>201826</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Type 1 diabetes mellitus</td>
+<td>201254</td>
+<td>Binary</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cerebrovascular" tabindex="-1"><a class="observablehq-header-anchor" href="#cerebrovascular">Cerebrovascular</a></h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Concept ID</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transient cerebral ischemia (TIA)</td>
+<td>373503</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Cerebrovascular disease</td>
+<td>381591</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Cerebellar stroke syndrome</td>
+<td>4111711</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Brainstem stroke syndrome</td>
+<td>4111710</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Cerebral amyloid angiopathy</td>
+<td>4045749</td>
+<td>Binary</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ophthalmic" tabindex="-1"><a class="observablehq-header-anchor" href="#ophthalmic">Ophthalmic</a></h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Concept ID</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMD (dry or wet)</td>
+<td>372629, 376966</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Ocular hypertension</td>
+<td>381290</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Glaucoma</td>
+<td>437541</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Retinal vascular disorder</td>
+<td>434337</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Diabetic retinopathy</td>
+<td>45763583, 4255401, 4252356</td>
+<td>Binary</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cohort-demographics" tabindex="-1"><a class="observablehq-header-anchor" href="#cohort-demographics">Cohort Demographics</a></h2>
+<p>Looking at ages, there is relatively uniform distribution for age and age based on sex for patients without incident dementia, whereas the age of patients with dementia is left skewed. The older an individual, the higher the probability of incident dementia.
+<img src="./_file/figs/Age_Distribution.e8ac9bf2.png" alt="Age Distribution"></p>
+<p>We can also compare that against Gender, there are generally more females in this cohort than males.
+<img src="./_file/figs/Age_Distribution_bySex.6e11f399.png" alt="Age Distribution Based on Diagnosis"></p>
+<p>There is a spike for birth year 1937, which could be a clerical error or the default birth year that OHDSI assigned patients who's birth years were unknown</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./data"><span>Data Overview</span></a><a rel="next" href="./findings"><span>Findings</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-04-21T20:24:08">Apr 21, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Findings | Dementia Diagnosis Exploration</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.598f0269.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.31cd1366.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.598f0269.js";
+import {registerFile} from "./_observablehq/stdlib.277aeab8.js";
+
+registerFile("./data/sig_adjust.csv", {"name":"./data/sig_adjust.csv","mimeType":"text/csv","path":"./_file/data/sig_adjust.805e9b31.csv","lastModified":1776816968213,"size":171300});
+
+define({id: "9a774ad7", inputs: ["FileAttachment"], outputs: ["sig"], body: async (FileAttachment) => {
+const sig = await FileAttachment("./data/sig_adjust.csv").csv();
+return {sig};
+}});
+
+define({id: "1ff2c44d", inputs: ["Inputs","sig","view"], outputs: ["searchInput","search"], body: (Inputs,sig,view) => {
+const searchInput = Inputs.search(sig, {
+  placeholder: "Search Concept Ids",
+});
+const search = view(searchInput);
+return {searchInput,search};
+}});
+
+define({id: "9bced2cb", inputs: ["Inputs","search","display"], body: async (Inputs,search,display) => {
+display(await(
+Inputs.table(search)
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Dementia Diagnosis Exploration</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./data">Data Overview</a></li>
+    <li class="observablehq-link"><a href="./cohort">Cohort</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./findings">Findings</a></li>
+    <li class="observablehq-link"><a href="./model">Model</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#statistical-analysis">Statistical Analysis</a></li>
+<li class="observablehq-secondary-link"><a href="#significance">Significance</a></li>
+<li class="observablehq-secondary-link"><a href="#tear-film-insufficiency">Tear film Insufficiency</a></li>
+<li class="observablehq-secondary-link"><a href="#primary-open-angle-glaucoma">Primary open angle glaucoma</a></li>
+<li class="observablehq-secondary-link"><a href="#bradycardia">Bradycardia</a></li>
+<li class="observablehq-secondary-link"><a href="#peripheral-venous-insufficiency">Peripheral Venous Insufficiency</a></li>
+<li class="observablehq-secondary-link"><a href="#table">Table</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="findings" tabindex="-1"><a class="observablehq-header-anchor" href="#findings">Findings</a></h1>
+<p>Using the epidemialogical cohort it's possible to get all distinct conditions a patient exhibited before the diagnosis of dementia, therefore being able to analyze different conditions that may play a role in final diagnosis.</p>
+<h2 id="statistical-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#statistical-analysis">Statistical Analysis</a></h2>
+<p>There were a number of features that were found to be found more often in patients that would go on to be diagnosed with dementia.  The following were identified at approximately twice the rate in patients with dementia relative to dementia-free controls.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Concept ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chronic Diastolic heart failure</td>
+<td>40479576</td>
+</tr>
+<tr>
+<td>Tear film Insufficiency</td>
+<td>378427</td>
+</tr>
+<tr>
+<td>Primary open angle glaucoma</td>
+<td>435262</td>
+</tr>
+<tr>
+<td>Carotid artery obstruction</td>
+<td>4288310</td>
+</tr>
+<tr>
+<td>Bradycardia</td>
+<td>4169095</td>
+</tr>
+<tr>
+<td>Peripheral Venous Insufficiency</td>
+<td>321596</td>
+</tr>
+</tbody>
+</table>
+<h2 id="significance" tabindex="-1"><a class="observablehq-header-anchor" href="#significance">Significance</a></h2>
+<p>These findings are supported by the following journal articles</p>
+<h3 id="chronic-diastolic-heart-failure" tabindex="-1"><a class="observablehq-header-anchor" href="#chronic-diastolic-heart-failure">Chronic Diastolic Heart Failure</a></h3>
+<p>Cognitive impairment is highly prevalent in heart failure patients, affecting 20–80% of this population, with deficits spanning executive function, memory, and psychomotor speed.  Structural brain changes (notably grey matter atrophy and white matter lesions) have been observed in patients with heart failure, with severity appearing to correlate with New York Heart Association functional class. Critically, congitive impairment in heart failure carries significant clinical consequences, including reduced treatment adherence, increased rehospitalization rates, and elevated mortality risk.</p>
+<p><a href="https://doi.org/10.3390/biology11020179" target="_blank" rel="noopener noreferrer">Cognitive impairment in heart failure—A review</a></p>
+<h2 id="tear-film-insufficiency" tabindex="-1"><a class="observablehq-header-anchor" href="#tear-film-insufficiency">Tear film Insufficiency</a></h2>
+<p>Patients with dry eye disease were found to have a significantly greater likelihood of having dementia, bipolar disorder, depression, and neurotic disorders though this is a fast moving area. TDementia patients may actually underreport dry eye symptoms due to cognitive and communication decline, meaning the true prevalence of dry eye disease in dementia populations may be higher than recorded. Neurological and psychological factors play an important role in the development and severity of dry eye symptoms, particularly in older adults.</p>
+<p><a href="https://doi.org/10.2147/CIA.S99498" target="_blank" rel="noopener noreferrer">Association of dry eye syndrome and psychiatric or neurological disorders in elderly patients</a></p>
+<h2 id="primary-open-angle-glaucoma" tabindex="-1"><a class="observablehq-header-anchor" href="#primary-open-angle-glaucoma">Primary open angle glaucoma</a></h2>
+<p>This 2024 systematic review and meta-analysis examined the relationship between glaucoma subtypes and subsequent risk of dementia and cognitive impairment. The pooled results showed that primary open-angle glaucoma increased the risk of all cause dementia (Alzheimer's disease, and cognitive impairment) , while angle-closure glaucoma increased the risk of vascular dementia.  The proposed mechanisms linking the two conditions draw on their shared neurodegenerative nature. Female glaucoma patients were found to be more likely to develop Alzheimer's disease, whereas no significant link was found between male glaucoma patients and dementia. The authors conclude that more cohort studies are needed to confirm these associations.</p>
+<p><a href="https://doi.org/10.1007/s40520-024-02811-w" target="_blank" rel="noopener noreferrer">Risk of glaucoma to subsequent dementia or cognitive impairment: A systematic review and meta-analysis</a></p>
+<h2 id="bradycardia" tabindex="-1"><a class="observablehq-header-anchor" href="#bradycardia">Bradycardia</a></h2>
+<p>This study investigated whether non-cardiogenic bradycardia occurred more frequently in frontotemporal dementia (FTD) than in other cognitive disorders, based on the premise that brain regions involved in autonomic cardiovascular control  including the medial frontal cortex, insula, and amygdala  are directly affected by FTD neurodegeneration. Heart rates were recorded in 258 patients across multiple dementia and cognitive impairment diagnoses. Bradycardia was significantly more frequent in patients with FTD, and this difference remained significant even after excluding subjects undergoing treatment with a potentially bradycardic effect, with bradycardia being more prevalent in behavioural FTD cases than in the aphasic variant.  The study concludes that bradycardia may reflect autonomic dysregulation specific to FTD, though further research is needed before it can be used as a diagnostic marker.</p>
+<p><a href="https://doi.org/10.1016/j.nrl.2013.02.010" target="_blank" rel="noopener noreferrer">Bradycardia in frontotemporal dementia.</a></p>
+<h2 id="peripheral-venous-insufficiency" tabindex="-1"><a class="observablehq-header-anchor" href="#peripheral-venous-insufficiency">Peripheral Venous Insufficiency</a></h2>
+<p>This large nationwide cohort study investigated the relationship between varicose veins (how  of peripheral venous insufficiency manifests) and the subsequent development of dementia.  Notably, the study also found that treatment or surgical procedure for varicose veins was significantly associated with a decreased risk of vascular dementia suggesting that managing peripheral venous disease may decrease the chance of a VCID Diagnosis later.</p>
+<p>[Association between varicose veins and occurrence of dementia: A nationwide population-based cohort study.]  (doi: 10.1371/journal.pone.0322892)</p>
+<h2 id="table" tabindex="-1"><a class="observablehq-header-anchor" href="#table">Table</a></h2>
+<p>Here is a searchable table for your convenience. There look like there are approximately 2500 codes that could be statistically significant in diagnosing Dementia patients. This requires knowledge of the Atlas Dictionary, but could be a starting point in finding correlated conditions.</p>
+<div class="observablehq observablehq--block"><!--:9a774ad7:--></div>
+<div class="observablehq observablehq--block"><!--:1ff2c44d:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:9bced2cb:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./cohort"><span>Cohort</span></a><a rel="next" href="./model"><span>Model</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-04-21T20:24:08">Apr 21, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>
