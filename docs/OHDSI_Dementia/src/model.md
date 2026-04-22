@@ -82,7 +82,16 @@ Feature selection is one area of exploration we did not spend as much time on an
 | `gamma` | — | — | 0.1 |
 | **CV F1** | 0.6734 | 0.6726 | 0.6677 |
 
-#### Currently, this model generally underperforms what is available in the literature. That being said, we believe that more time spent on feature selection and finetuning the hyperparameters of these models could match or improve upon what is available in the literature.
+#### Currently, this model generally underperforms what is available in the literature, mainly due to the data that was available. That being said, we believe that more time spent on feature selection and finetuning the hyperparameters of these models could match or improve upon what is available in the literature.  
+
+| Model | Source | AUC | Sensitivity | Specificity | NPV |
+|---|---|---|---|---|---|
+| Kivipelto et al. | Literature | 0.70–0.80 | 0.77 | 0.63 | 0.98 |
+| eRADAR | Literature | 0.78–0.85 | 0.36–0.54 | 0.90–0.92 | — |
+| Li et al. (3-yr) | Literature | 0.841–0.884 | 0.772–0.815 | 0.764–0.805 | 0.947–0.958 |
+| **XGBoost (this work)** | **Ours** | **0.713** | **0.682** | **0.645** | **0.962** |
+
+Our NPV and Sensitivity were our closest metrics, while our AUC is with the bounds of some of these papers, abiet on the lower side. 
 
 #### ROC-AUC Curves
 ![Logistic Regression ROC-AUC](figs/ROC_AUC_Curve_lr.png)

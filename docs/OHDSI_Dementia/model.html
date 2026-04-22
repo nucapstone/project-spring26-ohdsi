@@ -341,7 +341,54 @@ import "./_observablehq/client.598f0269.js";
 </tr>
 </tbody>
 </table>
-<h4 id="currently-this-model-generally-underperforms-what-is-available-in-the-literature-that-being-said-we-believe-that-more-time-spent-on-feature-selection-and-finetuning-the-hyperparameters-of-these-models-could-match-or-improve-upon-what-is-available-in-the-literature" tabindex="-1"><a class="observablehq-header-anchor" href="#currently-this-model-generally-underperforms-what-is-available-in-the-literature-that-being-said-we-believe-that-more-time-spent-on-feature-selection-and-finetuning-the-hyperparameters-of-these-models-could-match-or-improve-upon-what-is-available-in-the-literature">Currently, this model generally underperforms what is available in the literature. That being said, we believe that more time spent on feature selection and finetuning the hyperparameters of these models could match or improve upon what is available in the literature.</a></h4>
+<h4 id="currently-this-model-generally-underperforms-what-is-available-in-the-literature-mainly-due-to-the-data-that-was-available-that-being-said-we-believe-that-more-time-spent-on-feature-selection-and-finetuning-the-hyperparameters-of-these-models-could-match-or-improve-upon-what-is-available-in-the-literature" tabindex="-1"><a class="observablehq-header-anchor" href="#currently-this-model-generally-underperforms-what-is-available-in-the-literature-mainly-due-to-the-data-that-was-available-that-being-said-we-believe-that-more-time-spent-on-feature-selection-and-finetuning-the-hyperparameters-of-these-models-could-match-or-improve-upon-what-is-available-in-the-literature">Currently, this model generally underperforms what is available in the literature, mainly due to the data that was available. That being said, we believe that more time spent on feature selection and finetuning the hyperparameters of these models could match or improve upon what is available in the literature.</a></h4>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Source</th>
+<th>AUC</th>
+<th>Sensitivity</th>
+<th>Specificity</th>
+<th>NPV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kivipelto et al.</td>
+<td>Literature</td>
+<td>0.70–0.80</td>
+<td>0.77</td>
+<td>0.63</td>
+<td>0.98</td>
+</tr>
+<tr>
+<td>eRADAR</td>
+<td>Literature</td>
+<td>0.78–0.85</td>
+<td>0.36–0.54</td>
+<td>0.90–0.92</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Li et al. (3-yr)</td>
+<td>Literature</td>
+<td>0.841–0.884</td>
+<td>0.772–0.815</td>
+<td>0.764–0.805</td>
+<td>0.947–0.958</td>
+</tr>
+<tr>
+<td><strong>XGBoost (this work)</strong></td>
+<td><strong>Ours</strong></td>
+<td><strong>0.713</strong></td>
+<td><strong>0.682</strong></td>
+<td><strong>0.645</strong></td>
+<td><strong>0.962</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Our NPV and Sensitivity were our closest metrics, while our AUC is with the bounds of some of these papers, abiet on the lower side.</p>
 <h4 id="roc-auc-curves" tabindex="-1"><a class="observablehq-header-anchor" href="#roc-auc-curves">ROC-AUC Curves</a></h4>
 <p><img src="./_file/figs/ROC_AUC_Curve_lr.839842f9.png" alt="Logistic Regression ROC-AUC">
 <img src="./_file/figs/ROC_AUC_Curve_rf.40e4db18.png" alt="Random Forest ROC-AUC">
@@ -355,7 +402,7 @@ import "./_observablehq/client.598f0269.js";
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./findings"><span>Findings</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-04-21T20:24:08">Apr 21, 2026</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-04-22T17:46:55">Apr 22, 2026</a>.</div>
 </footer>
 </div>
 </body>

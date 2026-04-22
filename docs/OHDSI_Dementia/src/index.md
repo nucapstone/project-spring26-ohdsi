@@ -1,7 +1,7 @@
 # VCID and OHDSI 
 
 # Project Motivations
-This project originally was seeking answers in VCID Diagnosis. Unfortunatly the OHDSI data set did not have that data. 
+This project originally was seeking answers in VCID Diagnosis. Unfortunatly the OHDSI data set did not have that data.  The end result of the project was an epidemiological cohort and possible biomarkers for continued research.  These results are reproducable at [this Github Repo](https://github.com/nucapstone/project-spring26-ohdsi)
 
 ## Project Description 
 
